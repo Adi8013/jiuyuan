@@ -6,6 +6,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     database: mysql
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  ##静态资源路径
+  resources:
+   static-locations: /WEB-INF/static/
  
 mybatis:
   typeAliasesPackage: com.jiuyuan
