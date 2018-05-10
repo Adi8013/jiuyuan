@@ -13,7 +13,11 @@ spring:
   ##静态资源路径
   resources:
    static-locations: /WEB-INF/static/
- 
+   
+##log4j2.xml路径
+logging:
+  config: classpath:log4j2.xml
+  
 mybatis:
   typeAliasesPackage: com.jiuyuan
   mapperLocations: classpath*:com/jiuyuan/*/mapper/*Mapper.xml 
