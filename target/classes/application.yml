@@ -12,7 +12,7 @@ spring:
       suffix: .jsp
   ##静态资源路径
   resources:
-   static-locations: /WEB-INF/static/
+   static-locations: /WEB-INF/static/,/WEB-INF/views/
    
 ##log4j2.xml路径
 logging:

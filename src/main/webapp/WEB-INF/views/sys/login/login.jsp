@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
+<script type="text/javascript" src="core/load.js"></script>
 <style>
 body{
   background:url(images/bg.png) repeat-x;
@@ -60,12 +61,12 @@ a{
     padding-right: 5px;
 }
 
-.downIntro,.introYun,.account{
+.downIntro,.introYun,.username{
 float:left;
 margin-right: 25px;
 }
 
-.name,.pwd{            
+.name,.password{            
   width: 310px;
   height: 44px;
   line-height: 44px;
@@ -75,7 +76,7 @@ margin-right: 25px;
   background-color: #0A3C78;
   border: 1px solid #329BE0;
 }
-.name:hover,.pwd:hover,.name:focus,.pwd:focus{
+.name:hover,.password:hover,.name:focus,.password:focus{
 
 	  background-color: #052b64;
 }
@@ -202,7 +203,7 @@ margin-right: 25px;
       border-radius: 16px;
     }
     
-    .forgetPwd{
+    .forgetpassword{
     
           height: 32px;
 		  line-height: 32px;
@@ -211,7 +212,7 @@ margin-right: 25px;
 		  text-align: center;
     }
     
-     .forgetPwd:hover{
+     .forgetpassword:hover{
       background-color: #354d8d;
       border-radius: 16px;
      
@@ -231,6 +232,12 @@ margin-right: 25px;
 
 }
 
+#changImg:hover{
+	cursor:pointer;
+}
+#validcode:hover{
+  cursor:pointer;
+}
 #children li:hover{
   background-color: #354d8d;
 
@@ -299,30 +306,33 @@ margin-right: 25px;
 }
 #tlogin:focus{outline:none;}
 
-
 </style>
 </head>
 <body>
 	<div id="sky"></div>
 	<div id="head"></div>
+	<section>
 	<div id="middle">
-		<form action="login" method="post">
+		<form action="doLogin" method="post" check="doCheckLogin" >
 			<ul style="text-align: center;">
 				<li style="font-size: 48px">九元建材管理系统</li>
 
-				<li><input class="name" name="username" placeholder="请输入用户名"></li>
-				<li><input type="password" name="password" class="pwd"
+				<li><input class="name" name="username" id= "username" placeholder="请输入用户名"></li>
+				<li><input type="password" name="password" class="password" id="password"
 					placeholder="请输入密码"></li>
-				<li id="verifyCode" style="display: block;"><input id="valid"
-					name="rand" placeholder="请输入验证码" maxlength="4"> <span
-					id="validcode"> <img id="verifyCodePic" id="img_captcha"
-						src="/defaultCaptcha">
-				</span> <span id="changeimg"> 换一张 </span></li>
+				<li id="verifyCode" style="display: block;">
+					<input id="valid" name="code" placeholder="请输入验证码" maxlength="4"> 
+					<span id="validcode"> 
+						<img id="verifyCodePic" id="img_captcha" title="点击更换" src="/defaultCaptcha" onclick="getVerify(this);">
+					</span> 
+					<span id="changImg"> 换一张 </span>
+				</li>
 				<li><button id="login">立即登录</button></li>
-				<li><span id="err" style="display: inline-block;">密码错误</span></li>
+				<li><span id="err" style="display: inline-block;"></span></li>
 			</ul>
 		</form>
 	</div>
+	</section>
 	<div id="footer">
 
 		<a href="http://wpa.qq.com/msgrd?v=3&uin=659282955&site=qq&menu=yes"
@@ -333,43 +343,7 @@ margin-right: 25px;
 
 
 	<script src="core/jquery-1.8.3.js" type="text/javascript" charset="UTF-8"></script>
-	<script language='javascript' type='text/javascript'>
-		$(document).ready(function() {
-			init();
-
-		});
-
-		function init() {
-
-			$(".name,.pwd,#valid").keyup(function(event) {
-				if (event.keyCode == 13) {
-					$('#login').click();
-				}
-
-			});
-			$("form").submit(function(event) {
-				var account = $(".name").val();
-				var pwd = $(".pwd").val();
-				if (!account || !pwd) {
-					$("#err").css("display", "inline-block");
-					$("#err").text("请输入用户名或密码");
-					return false;
-				}
-				var code = $("#valid").val().toLocaleLowerCase();
-				code = $.trim(code);
-				if (code.length < 4) {
-					$("#err").css("display", "inline-block");
-					$("#err").text("验证码错误");
-					return false;
-				}
-			});
-
-			$('#changeimg').click(function() {
-				$('#verifyCodePic')[0].src = '/jcaptcha.jpg?' + Math.random();
-				return false;
-			});
-		}
-	</script>
+	<script src="sys/login/login.js" type="text/javascript" charset="UTF-8"></script>
 
 
 </body>
