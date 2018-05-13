@@ -13,7 +13,9 @@ spring:
   ##静态资源路径
   resources:
    static-locations: /WEB-INF/static/,/WEB-INF/views/
-   
+##修改访问端口
+server:
+  port: 80
 ##log4j2.xml路径
 logging:
   config: classpath:log4j2.xml

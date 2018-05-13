@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#username").focus();
+	$("#userAccount").focus();
 	$("#changImg").click(function() {
 		var $img = $(this).prev().children()[0];
 		$img.src ="/defaultCaptcha?"+Math.random();
@@ -13,13 +13,6 @@ function getVerify(obj) {
 	obj.src ="/defaultCaptcha?"+Math.random();
 }
 
-function refreshCaptcha() {
-	var date = new Date();
-	var captcha = document.getElementById("img_captcha");
-	captcha.src = "captchaCode?t=" + date.getTime();
-}
-
-
 //回车登录
 $(document).keydown(function(e){
 	if(e.keyCode == 13) {
@@ -29,7 +22,7 @@ $(document).keydown(function(e){
 
 function submitform(){
 	$("#err").text("");
-	if($("#username").val() == ""){
+	if($("#userAccount").val() == ""){
 		$("#err").text("请输入用户名！");
 		return false;
 	}
@@ -37,40 +30,43 @@ function submitform(){
 		$("#err").text("请输入密码！");
 		return false;
 	}
-	if($("#captcha").val() == ""){
+	if($("#valid").val() == ""){
 		$("#err").text("请输入验证码！");
 		return false;
 	}
-	
+	if($("#valid").val().trim().length < 4){
+		$("#err").text("请输入4位数验证码！");
+		return false;
+	}
 	
 	var actionurl = $('form').attr('action');
 	var checkurl = $('form').attr('check');
-	var username = "username="+$("#username").val();
+	var userAccount = "userAccount="+$("#userAccount").val();
 	var password = "password="+$("#password").val();
-	var captcha = "captcha="+$("#captcha").val();
-	var formData = username+"&"+password+"&"+captcha;
-	
-	loading('登陆中..', 1);
-	setTimeout(function () { 
-		unloading();
-		$.ajax({
-			async : false,
-			cache : false,
-			type : 'POST',
-			url : checkurl,// 请求的action路径
-			data : formData,
-			error : function() {// 请求失败处理函数
-			},
-			success : function(d) {
-				if (d.success) {
-					window.location.href = actionurl;
-				}else{
-					$("#err").text(d.msg);
-				}
+	var captcha = "captcha="+$("#valid").val();
+	var formData = userAccount+"&"+password+"&"+captcha;
+	$.ajax({
+		type : 'POST',
+		url : checkurl,// 请求的action路径
+		data : formData,
+		error : function() {// 请求失败处理函数
+		},
+		success : function(data) {
+			console.log(data);
+			if (data.status == "success") {
+				window.location.href = actionurl;
+			}else{
+				$("#err").text(data.msg);
+				return false;
 			}
-		});
-    }, 1000);
-	
+		}
+	});
+	//loading('登陆中..', 1);
+	/*setTimeout(function () { 
+		//unloading();
+		
+    }, 1000);*/
+	return false;
 }
 
 //加载信息

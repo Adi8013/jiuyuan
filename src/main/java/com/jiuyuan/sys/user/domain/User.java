@@ -25,7 +25,7 @@ public class User {
 
 	private String usualMenu;
 
-	private String userlLevelCode;
+	private String userLevelCode;
 
 	private String minusMenu;
 
@@ -135,12 +135,12 @@ public class User {
 		this.usualMenu = usualMenu;
 	}
 
-	public String getUserlLevelCode() {
-		return userlLevelCode;
+	public String getUserLevelCode() {
+		return userLevelCode;
 	}
 
-	public void setUserlLevelCode(String userlLevelCode) {
-		this.userlLevelCode = userlLevelCode;
+	public void setUserLevelCode(String userlLevelCode) {
+		this.userLevelCode = userlLevelCode;
 	}
 
 	public String getMinusMenu() {

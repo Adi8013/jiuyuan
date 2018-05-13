@@ -24,9 +24,12 @@
 	</Appenders>
 	<Loggers>
 		<!-- 输出info级别信息 -->
+		<!-- 这样，我们便能在程序中使用log了，目前我们的日志是在控制台进行输出，如果需要输出到文件中的话，添加<AppenderRef ref="File" />即可 -->
 		<Root level="info">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="RollingFile" />
 		</Root>
 	</Loggers>
+	<!-- log4j2使用方法 -->
+	<!-- private static final Logger LOGGER = LogManager.getLogger(CaptchaUtil.class); -->
 </Configuration>  

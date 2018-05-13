@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jiuyuan.sys.common.ResponseMsg;
+import com.jiuyuan.sys.user.domain.User;
+import com.jiuyuan.sys.user.service.UserService;
 import com.jiuyuan.utils.CaptchaUtil;
 import com.jiuyuan.utils.SystemConstant;
 
@@ -25,9 +28,24 @@ import com.jiuyuan.utils.SystemConstant;
 @Controller
 public class LoginController {
 	private static final Logger LOGGER = LogManager.getLogger(LoginController.class); 
+	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping("login")
 	public String login() {
 		return "sys/login/login";
+	}
+	
+	@RequestMapping("index")
+	public String index() {
+		return "index";
+	}
+	@RequestMapping("loginOut")
+	public String loginOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute(SystemConstant.SYS_USER);
+		return "redirect:login";
 	}
 	/**
 	 * 验证码生成控制器
@@ -56,14 +74,32 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value="/doLogin",method=RequestMethod.POST)
+	@RequestMapping(value="/doCheckLogin",method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseMsg doCheckLogin(@RequestParam(name="username") String username, 
-									@RequestParam(name="password") String password,@RequestParam(name="code") String code) {
+	public ResponseMsg doCheckLogin(@RequestParam(name="userAccount") String userAccount, @RequestParam(name="password") String password,
+									@RequestParam(name="captcha") String captcha, HttpServletRequest request) {
 		ResponseMsg rm = new ResponseMsg();
-		System.out.println(username);
-		System.out.println(password);
-		System.out.println(code);
+		HttpSession session = request.getSession();
+		if (!session.getAttribute(SystemConstant.KEY_CAPTCHA).equals(captcha.trim())) {
+			rm.setMsg("验证码错误");
+			rm.setStatus(SystemConstant.ERROR);
+			return rm;
+		}
+		User user = userService.loginUser(userAccount);
+		if (user == null) {
+			rm.setMsg("用户名不存在！");
+			rm.setStatus(SystemConstant.ERROR);
+			return rm;
+		} else {
+			if (user.getPassword().equals(password)) {
+				session.setAttribute(SystemConstant.SYS_USER, user);
+				rm.setStatus(SystemConstant.SUCCESS);
+			} else {
+				rm.setMsg("密码错误！");
+				rm.setStatus(SystemConstant.ERROR);
+				return rm;
+			}
+		}
 		return rm;
 	}
 	

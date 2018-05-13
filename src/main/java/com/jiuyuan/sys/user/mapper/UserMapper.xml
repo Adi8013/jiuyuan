@@ -14,7 +14,7 @@
     <result column="LastLoginDate" jdbcType="VARCHAR" property="lastLoginDate" />
     <result column="AddMenu" jdbcType="VARCHAR" property="addMenu" />
     <result column="UsualMenu" jdbcType="VARCHAR" property="usualMenu" />
-    <result column="userlLevelCode" jdbcType="VARCHAR" property="userlLevelCode" />
+    <result column="userLevelCode" jdbcType="VARCHAR" property="userLevelCode" />
     <result column="MinusMenu" jdbcType="VARCHAR" property="minusMenu" />
     <result column="HeadPath" jdbcType="VARCHAR" property="headPath" />
     <result column="Remark" jdbcType="VARCHAR" property="remark" />
@@ -24,9 +24,18 @@
   </resultMap>
   <sql id="Base_Column_List">
     pk, UserAccount, UserName, UserDeptCode, UserOrgCode, Password, Phone, Email, RegisterDate, 
-    LastLoginDate, AddMenu, UsualMenu, userlLevelCode, MinusMenu, HeadPath, Remark, InsertTime, 
+    LastLoginDate, AddMenu, UsualMenu, userLevelCode, MinusMenu, HeadPath, Remark, InsertTime, 
     LastestUpdate, UpdatePerson
   </sql>
+  
+  <!-- 根据用户名登录 -->
+  <select id="loginUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tuser
+    where userAccount = #{userAccount,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -42,14 +51,14 @@
       UserDeptCode, UserOrgCode, Password, 
       Phone, Email, RegisterDate, 
       LastLoginDate, AddMenu, UsualMenu, 
-      userlLevelCode, MinusMenu, HeadPath, 
+      userLevelCode, MinusMenu, HeadPath, 
       Remark, InsertTime, LastestUpdate, 
       UpdatePerson)
     values (#{pk,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userDeptCode,jdbcType=VARCHAR}, #{userOrgCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, 
       #{lastLoginDate,jdbcType=VARCHAR}, #{addMenu,jdbcType=VARCHAR}, #{usualMenu,jdbcType=VARCHAR}, 
-      #{userlLevelCode,jdbcType=VARCHAR}, #{minusMenu,jdbcType=VARCHAR}, #{headPath,jdbcType=VARCHAR}, 
+      #{userLevelCode,jdbcType=VARCHAR}, #{minusMenu,jdbcType=VARCHAR}, #{headPath,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{insertTime,jdbcType=VARCHAR}, #{lastestUpdate,jdbcType=VARCHAR}, 
       #{updatePerson,jdbcType=VARCHAR})
   </insert>
@@ -92,8 +101,8 @@
       <if test="usualMenu != null">
         UsualMenu,
       </if>
-      <if test="userlLevelCode != null">
-        userlLevelCode,
+      <if test="userLevelCode != null">
+        userLevelCode,
       </if>
       <if test="minusMenu != null">
         MinusMenu,
@@ -151,8 +160,8 @@
       <if test="usualMenu != null">
         #{usualMenu,jdbcType=VARCHAR},
       </if>
-      <if test="userlLevelCode != null">
-        #{userlLevelCode,jdbcType=VARCHAR},
+      <if test="userLevelCode != null">
+        #{userLevelCode,jdbcType=VARCHAR},
       </if>
       <if test="minusMenu != null">
         #{minusMenu,jdbcType=VARCHAR},
@@ -210,8 +219,8 @@
       <if test="usualMenu != null">
         UsualMenu = #{usualMenu,jdbcType=VARCHAR},
       </if>
-      <if test="userlLevelCode != null">
-        userlLevelCode = #{userlLevelCode,jdbcType=VARCHAR},
+      <if test="userLevelCode != null">
+        userLevelCode = #{userLevelCode,jdbcType=VARCHAR},
       </if>
       <if test="minusMenu != null">
         MinusMenu = #{minusMenu,jdbcType=VARCHAR},
@@ -247,7 +256,7 @@
       LastLoginDate = #{lastLoginDate,jdbcType=VARCHAR},
       AddMenu = #{addMenu,jdbcType=VARCHAR},
       UsualMenu = #{usualMenu,jdbcType=VARCHAR},
-      userlLevelCode = #{userlLevelCode,jdbcType=VARCHAR},
+      userLevelCode = #{userLevelCode,jdbcType=VARCHAR},
       MinusMenu = #{minusMenu,jdbcType=VARCHAR},
       HeadPath = #{headPath,jdbcType=VARCHAR},
       Remark = #{remark,jdbcType=VARCHAR},
@@ -256,4 +265,7 @@
       UpdatePerson = #{updatePerson,jdbcType=VARCHAR}
     where pk = #{pk,jdbcType=VARCHAR}
   </update>
+  
+  
+  
 </mapper>
