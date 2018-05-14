@@ -32,6 +32,12 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping("userjsp")
+	public String user() {
+		return "sys/user";
+	}
+	
+	
 	@RequestMapping("login")
 	public String login() {
 		return "sys/login/login";
@@ -41,6 +47,14 @@ public class LoginController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping("product")
+	@ResponseBody
+	public String product() {
+		
+		return "";
+	}
+	
 	@RequestMapping("loginOut")
 	public String loginOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();

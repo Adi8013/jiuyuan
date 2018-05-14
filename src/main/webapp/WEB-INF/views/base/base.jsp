@@ -6,12 +6,12 @@ String path = request.getContextPath();
 request.setAttribute("path", path);
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<link rel="stylesheet" type="text/css" href="core/easyui-1.4.1/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="core/easyui-1.4.1/themes/icon.css">
-<script type="text/javascript" src="core/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="core/easyui-1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="core/easyui-1.4.1/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="core/easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${path}/easyui/1.3.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${path}/css/dee.css" />
+<link rel="stylesheet" type="text/css" href="${path}/css/icon.css" />
+<script type="text/javascript" src="${path}/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="${path}/easyui/1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${path}/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
 <!--  
 <script type="text/javascript" src="js/system/forbiddenutil.js"></script>
 -->

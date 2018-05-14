@@ -1,5 +1,7 @@
 package com.jiuyuan.sys.user.mapper;
 
+import java.util.List;
+
 import com.jiuyuan.sys.user.domain.User;
 
 public interface UserMapper {
@@ -17,5 +19,7 @@ public interface UserMapper {
     
     // 根据用户名(用户名注册的时候保证唯一性)
     User loginUser(String userAccount);
+    
+    List<User> findAll();
     
 }

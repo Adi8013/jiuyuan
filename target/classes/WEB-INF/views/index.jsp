@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="copyright" content="All Rights Reserved, Copyright (C) 2013, Wuyeguo, Ltd." />
 <title>九元建材管理系统</title>
-<link rel="stylesheet" type="text/css" href="easyui/1.3.4/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="css/dee.css" />
-<link rel="stylesheet" type="text/css" href="css/icon.css" />
-<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="easyui/1.3.4/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
+<%@include file="/WEB-INF/views/base/base.jsp"%>
 </head>
 <body class="easyui-layout">
 	<!-- begin of header -->
@@ -30,11 +26,11 @@
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">  	
     			<ul class="easyui-tree dee-side-tree">
-                	<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="temp/layout-2.html" iframe="0">菜单导航</a></li>
-                    <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">用户管理</a></li>
-                    <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">角色管理</a></li>
-                    <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">数据字典</a></li>
-                    <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">系统参数</a></li>
+                	<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="userjsp" iframe="1">菜单导航</a></li>
+                    <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="${path}/temp/layout-3.html" iframe="0">用户管理</a></li>
+                    <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="${path}/temp/layout-3.html" iframe="0">角色管理</a></li>
+                    <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="${path}/temp/layout-3.html" iframe="0">数据字典</a></li>
+                    <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="${path}/temp/layout-3.html" iframe="0">系统参数</a></li>
                     <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">操作日志</a></li>
                 </ul>
             </div>
@@ -176,6 +172,7 @@
 					});
 				}
 				else{
+					console.log(href);
 					tabPanel.tabs('add',{
 						title:title,
 						href:href,
