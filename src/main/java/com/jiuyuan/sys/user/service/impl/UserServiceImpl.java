@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findAll();
 	}
 
+	@Override
+	public int insertSelective(User user) {
+		return userMapper.insertSelective(user);
+	}
+
+	@Override
+	public int insert(User user) {
+		return userMapper.insert(user);
+	}
+
 }

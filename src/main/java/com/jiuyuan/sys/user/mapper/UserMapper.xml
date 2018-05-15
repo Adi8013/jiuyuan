@@ -57,7 +57,7 @@
       userLevelCode, MinusMenu, HeadPath, 
       Remark, InsertTime, LastestUpdate, 
       UpdatePerson)
-    values (#{pk,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+    values ((REPLACE((SELECT UUID()),'-','')), #{userAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userDeptCode,jdbcType=VARCHAR}, #{userOrgCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, 
       #{lastLoginDate,jdbcType=VARCHAR}, #{addMenu,jdbcType=VARCHAR}, #{usualMenu,jdbcType=VARCHAR}, 
@@ -127,9 +127,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="pk != null">
-        #{pk,jdbcType=VARCHAR},
-      </if>
+      (REPLACE((SELECT UUID()),'-','')),
       <if test="userAccount != null">
         #{userAccount,jdbcType=VARCHAR},
       </if>

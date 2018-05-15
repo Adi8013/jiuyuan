@@ -10,4 +10,8 @@ public interface UserService {
 	User loginUser(String userAccount);
 	
 	List<User> findAll();
+	
+	int insertSelective(User record);
+	
+	 int insert(User record);
 }
