@@ -9,7 +9,6 @@ a:focus { text-decoration:none; color:#39f;}
 .pd3 { padding:3px;}
 .pd5 { padding:5px;}
 .pd10 { padding:10px;}
-
 label,
 button,
 input,
@@ -31,8 +30,8 @@ input[type="checkbox"] { cursor: pointer;}
 
 .tabs-tool { border-top:0;}
 .dee-text,
-.dee-textarea { padding:3px; border:1px #95b8e7 solid; width:260px;}
-.dee-text { height:14px; line-height:14px; }
+.dee-textarea { padding:3px; border:1px #95b8e7 solid; width:260px;margin:2px;}
+.dee-text { height:25px; line-height:25px; }
 
 .dee-header { height:55px; position:relative; z-index:0; overflow:hidden; border-bottom:1px #95b8e7 solid; background:url(../images/bg_header.jpg) bottom repeat-x;}
 .dee-header-left { position:absolute; z-index:1; left:15px; top:0;}

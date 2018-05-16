@@ -49,6 +49,14 @@
     delete from tuser
     where pk = #{pk,jdbcType=VARCHAR}
   </delete>
+  <!-- 根据主键批量删除 -->
+  <delete id="deleteByPks" parameterType="java.lang.String">
+    delete from tuser
+    where pk in 
+    <foreach item="pks" collection="array" open="(" separator="," close=")">
+    	#{pks}
+    </foreach>
+  </delete>
   <insert id="insert" parameterType="com.jiuyuan.sys.user.domain.User">
     insert into tuser (pk, UserAccount, UserName, 
       UserDeptCode, UserOrgCode, Password, 

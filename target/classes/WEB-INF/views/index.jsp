@@ -111,11 +111,11 @@
     <!-- end of footer -->  
     <script type="text/javascript">
 		$(function(){
-			$('.dee-side-tree a').bind("click",function(){
-				var title = $(this).text();
-				var url = $(this).attr('data-link');
-				var iconCls = $(this).attr('data-icon');
-				var iframe = $(this).attr('iframe')==1?true:false;
+			$('.dee-side-tree li').bind("click",function(){
+				var title = $(this).find('a').text();
+				var url = $(this).find('a').attr('data-link');
+				var iconCls = $(this).find('a').attr('data-icon');
+				var iframe = $(this).find('a').attr('iframe')==1?true:false;
 				addTab(title,url,iconCls,iframe);
 			});	
 		})

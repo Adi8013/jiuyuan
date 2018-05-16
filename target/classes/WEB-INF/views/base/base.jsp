@@ -12,6 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="${path}/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="${path}/easyui/1.3.4/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${path}/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${path}/js/validatetype.js"></script>
+<script type="text/javascript" src="${path}/js/pagerFilter.js"></script>
 <!--  
 <script type="text/javascript" src="js/system/forbiddenutil.js"></script>
 -->

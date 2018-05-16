@@ -39,4 +39,14 @@ public class UserServiceImpl implements UserService {
 		return userMapper.insert(user);
 	}
 
+	@Override
+	public int deleteByPks(String[] pks) {
+		return userMapper.deleteByPks(pks);
+	}
+
+	@Override
+	public User selectByPrimaryKey(String pk) {
+		return userMapper.selectByPrimaryKey(pk);
+	}
+
 }

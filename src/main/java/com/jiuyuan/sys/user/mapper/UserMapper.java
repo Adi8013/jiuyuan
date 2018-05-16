@@ -5,7 +5,11 @@ import java.util.List;
 import com.jiuyuan.sys.user.domain.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(String pk);
+    
+	int deleteByPrimaryKey(String pk);
+    
+    // 根据主键批量删除用户
+	int deleteByPks(String[] pks);
 
     int insert(User record);
 
