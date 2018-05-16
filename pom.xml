@@ -109,7 +109,12 @@
             <artifactId>fastjson</artifactId>  
             <version>1.2.29</version>  
         </dependency>  
-
+		
+		<!-- aop切面 -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -5,17 +5,12 @@
 
 $(function() {
 	var result;
-	var isNull = true;
 	$
 			.extend(
 					$.fn.validatebox.defaults.rules,
 					{
 						unique : {
 							validator : function(value) {
-								var ac = $('#userAccount').val();
-								if (ac = null || ac == undefined) {
-									isNull = false;
-								}
 								$.ajax({
 									async:false,
 									url:'/user/checkUserAccount',
@@ -28,7 +23,7 @@ $(function() {
 								});
 								return result;
 							},
-							message : isNull?'该帐号已存在':'帐号不能为空'
+							message : '该帐号已存在'
 						},
 						CHS : {
 							validator : function(value, param) {
