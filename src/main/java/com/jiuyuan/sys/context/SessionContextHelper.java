@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * http会话对象支持类
- * @author hh
+ * @author Adi
  */
 public class SessionContextHelper {
 	

@@ -1,3 +1,26 @@
 ﻿***********************************2018-05-16*************************************************************************
 1.controller入参数组时，需要这样加@RequestParam(value="pks[]")String[] pks
 2.easyui validatebox 去除校验 绑定校验
+
+***********************************2018-05-18*************************************************************************
+1.springboot过滤器的配置：①实现Filter接口，详见ApplicationFilter②在程序入口出增加
+	@Bean
+	public FilterRegistrationBean<Filter> someFilterRegistration() {
+		FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<Filter>();
+		registration.setFilter(applicationFilter());
+		registration.addUrlPatterns("/*");
+		registration.setName("applicationFilter");
+		return registration;
+	}
+	
+	@Bean(name = "applicationFilter")
+	public Filter applicationFilter() {
+		return new ApplicationFilter();
+	}
+
+2.过滤器中：//表示该页面可以在相同域名页面的 frame 中展示。不允许被其他网页中嵌套
+		httpResponse.addHeader("x-frame-options", "SAMEORIGIN");
+
+3.ThreadLocal的理解（还没完全理解）
+
+4.普通类需要用到session的解决方法。

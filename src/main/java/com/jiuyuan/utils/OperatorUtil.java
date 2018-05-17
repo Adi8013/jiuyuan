@@ -2,6 +2,7 @@ package com.jiuyuan.utils;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.jiuyuan.sys.context.SessionContextHelper;
@@ -18,6 +19,10 @@ public class OperatorUtil {
 		returnArr[0] = DateUtil.getSystemDate();
 		// 取得当前session
 		HttpSession session = SessionContextHelper.getSession();
+		System.out.println("当前会话：" + session);
+		//System.out.println(session2);
+		System.out.println(session.getAttribute(SystemConstant.SYS_USER));
+		//System.out.println(((User)session2.getAttribute(SystemConstant.SYS_USER)).getUserAccount());
 		String userAccount = null;
 		String userName = null;
 		if (session != null) {
