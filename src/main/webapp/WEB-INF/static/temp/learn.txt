@@ -2,7 +2,7 @@
 1.controller入参数组时，需要这样加@RequestParam(value="pks[]")String[] pks
 2.easyui validatebox 去除校验 绑定校验
 
-***********************************2018-05-18*************************************************************************
+***********************************2018-05-17*************************************************************************
 1.springboot过滤器的配置：①实现Filter接口，详见ApplicationFilter②在程序入口出增加
 	@Bean
 	public FilterRegistrationBean<Filter> someFilterRegistration() {
@@ -24,3 +24,30 @@
 3.ThreadLocal的理解（还没完全理解）
 
 4.普通类需要用到session的解决方法。
+
+***********************************2018-05-18*************************************************************************
+1.BigDecimal num = new BigDecimal("123.12345")和BigDecimal num = new BigDecimal(123.12345);并不一样
+  ①这个构造函数的结果有点难以预测。你可能认为java中用new BigDecimal(0.1)创建的BigDecimal应该等于0.1（一个是1的无精度的值，一个是有精度的值），但实际上精确的是等于0.1000000000000000055511151231257827021181583404541015625。这是因为0.1不能被double精确的表示（作为任意限定长度的二进制小数，实在不明白什么意思）。因此，传入构造函数的值不是精确的等于0.1。
+  ②而String参数的构造函数就能够得到很好的预测：如同我们认为的那样，new BigDecimal("0.1")完全等于0.1.因此，建议优先使用BigDecimal(String val)构造函数。
+  ③如果必须将double型传入BigDecimal，要注意该构造函数是一个精确的转换，它无法得到与先调用Double.toString(double)方法将double转换成String，再使用BigDecimal(String)构造函数一样的结果。如果要达到这种结果，要使用静态valueOf(double)方法。
+推荐使用以下这两种方式：
+public BigDecimal add(double value1,double value2){
+  //BigDecimal b1=new BigDecimal(Double.toString(value1)); //Double.toString(value1)返回的是字符串value1
+  //BigDecimal b2=new BigDecimal(Double.toString(value2));
+  BigDecimal b1=BigDecimal.valueOf(value1); 
+  BigDecimal b2=BigDecimal.valueOf(value2);
+  return b1.add(b2);
+ }
+ 
+ 2.BigDecimal 的函数
+   	①signum(); 返回值有-1，0，1分别表示负数，零，正数
+	②movePointRight(int n)方法返回一个BigDecimal，它等效于将该值的小数点向右移动n位
+	③BigDecimal.setScale()方法用于格式化小数点
+		setScale(1)表示保留一位小数，默认用四舍五入方式 
+		setScale(1,BigDecimal.ROUND_DOWN)直接删除多余的小数位，如2.35会变成2.3 
+		setScale(1,BigDecimal.ROUND_UP)进位处理，2.35变成2.4 
+		setScale(1,BigDecimal.ROUND_HALF_UP)四舍五入，2.35变成2.4
+		setScaler(1,BigDecimal.ROUND_HALF_DOWN)四舍五入，2.35变成2.3，如果是5则向下舍
+
+
+

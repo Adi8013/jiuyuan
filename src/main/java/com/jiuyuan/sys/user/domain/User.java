@@ -1,6 +1,8 @@
 package com.jiuyuan.sys.user.domain;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	private String pk;
 
 	private String userAccount;
