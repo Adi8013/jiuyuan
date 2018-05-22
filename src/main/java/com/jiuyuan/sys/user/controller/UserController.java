@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
 import com.jiuyuan.utils.SystemConstant;
+import com.jiuyuan.utils.security.EncryptUtil;
 import com.alibaba.fastjson.JSON;  
 
 @RestController
@@ -36,6 +37,8 @@ public class UserController {
 	
 	@RequestMapping(value="/addone", method = RequestMethod.POST)
 	public String addUser(User user) {
+		// 密码加密
+		user.setPassword(EncryptUtil.encrypt(user.getPassword()));
 		int result = userService.insert(user);
 		if (result > 0) {
 			return SystemConstant.SUCCESS;

@@ -22,6 +22,7 @@ import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
 import com.jiuyuan.utils.CaptchaUtil;
 import com.jiuyuan.utils.SystemConstant;
+import com.jiuyuan.utils.security.EncryptUtil;
 
 
 
@@ -105,7 +106,17 @@ public class LoginController {
 			rm.setStatus(SystemConstant.ERROR);
 			return rm;
 		} else {
-			if (user.getPassword().equals(password)) {
+			// 解密
+			String deEncrypt = "";
+			try {
+				deEncrypt = EncryptUtil.decrypt(user.getPassword());
+			} catch (Exception e) {
+				rm.setMsg("密码错误！");
+				rm.setStatus(SystemConstant.ERROR);
+				e.printStackTrace();
+				return rm;
+			}
+			if (deEncrypt.equals(password)) {
 				session.setAttribute(SystemConstant.SYS_USER, user);
 				rm.setStatus(SystemConstant.SUCCESS);
 			} else {

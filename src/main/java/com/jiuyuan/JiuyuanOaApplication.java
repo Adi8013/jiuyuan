@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.jiuyuan.sys.filter.ApplicationFilter;
+import com.jiuyuan.sys.filter.SSOFilter;
 
 @SpringBootApplication
 @MapperScan("com.jiuyuan.*.*.mapper")
@@ -31,6 +31,6 @@ public class JiuyuanOaApplication {
 	
 	@Bean(name = "applicationFilter")
 	public Filter applicationFilter() {
-		return new ApplicationFilter();
+		return new SSOFilter();
 	}
 }

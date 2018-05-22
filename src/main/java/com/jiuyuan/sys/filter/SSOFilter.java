@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.jiuyuan.sys.context.SessionContextHelper;
 import com.jiuyuan.utils.SystemConstant;
 
-public class ApplicationFilter implements Filter{
+public class SSOFilter implements Filter{
 
 	@Override
 	public void destroy() {
@@ -38,7 +38,7 @@ public class ApplicationFilter implements Filter{
 		//System.out.println("*****************进入过滤器");
 		String path = httpRequest.getServletPath();
 		//System.out.println("路径：" + path);
-		if(!path.endsWith(".js") && !path.endsWith(".css")&& !path.endsWith(".ico")&& !path.endsWith(".png")&& !path.endsWith(".jpg")
+		if(!path.endsWith(".js") && !path.endsWith(".css")&& !path.endsWith(".ico")&& !path.endsWith(".png")&& !path.endsWith(".jpg") && !path.endsWith(".gif")
 				&& !path.equals("/login")&& !path.equals("/defaultCaptcha")&& !path.equals("/doCheckLogin")){
 			System.out.println("拦截路径***"+path );
 			HttpSession session = httpRequest.getSession();

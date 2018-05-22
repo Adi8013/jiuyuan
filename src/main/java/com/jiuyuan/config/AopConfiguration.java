@@ -24,9 +24,9 @@ public class AopConfiguration {
         System.out.println("前置通知");
      // 获得当前操作人信息
      String[]  operatorInfo = OperatorUtil.getOperatorInfo();
-     System.out.println(operatorInfo.toString());
+     System.out.println("当前操作用户信息：" + operatorInfo.toString());
     }
-    @Around("executeService()")
+    /*@Around("executeService()")
     public Object doBasicProfiling(ProceedingJoinPoint pjp) {
 		Object result;	
 		try {
@@ -67,5 +67,5 @@ public class AopConfiguration {
 			throw new RuntimeException(e);
 		}
 		return result;
-	}
+	}*/
 }
