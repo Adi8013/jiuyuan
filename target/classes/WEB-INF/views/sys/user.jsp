@@ -57,7 +57,7 @@
 				</tr>
 				<tr>
 					<td align="right">电 话:</td>
-					<td><input type="text" id="phone" name="phone" class="dee-text" /></td>
+					<td><input type="text" id="phone" name="phone" class="dee-text" data-options="validType:'tel'" /></td>
 				</tr>
 				<tr>
 					<td align="right">邮 箱:</td>

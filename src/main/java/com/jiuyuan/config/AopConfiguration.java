@@ -15,18 +15,11 @@ import com.jiuyuan.utils.OperatorUtil;
 @Aspect //描述一个切面类，定义切面类的时候需要打上这个注解
 @Component
 public class AopConfiguration {
-	@Pointcut("execution(* com.jiuyuan.*.*.service.*.insert*(..))")
+	@Pointcut("execution(* com.jiuyuan.*.*.service.*.*_tran(..))")
     public void executeService() {
 
     }
-    @Before("executeService()")
-    public void qianzhi(){
-        System.out.println("前置通知");
-     // 获得当前操作人信息
-     String[]  operatorInfo = OperatorUtil.getOperatorInfo();
-     System.out.println("当前操作用户信息：" + operatorInfo.toString());
-    }
-    /*@Around("executeService()")
+    @Around("executeService()")
     public Object doBasicProfiling(ProceedingJoinPoint pjp) {
 		Object result;	
 		try {
@@ -34,15 +27,15 @@ public class AopConfiguration {
 			String[]  operatorInfo = OperatorUtil.getOperatorInfo();
 			// 获取切入点（即方法）的参数
 			Object[] MethodArgsObject = pjp.getArgs();
-			System.out.println(Arrays.toString(operatorInfo));
-			System.out.println("获取切入点（即方法）的参数" + MethodArgsObject);
 			String strMethodName_Upper = null; 
 			// 如有setUpdatePerson和setLastestUpdate方法使修改该参数
 			for (Object aop_Object : MethodArgsObject) {
+				//System.out.println("aop_Object:" + aop_Object);
 				Method[] MethodNames =  aop_Object.getClass().getMethods();
 				Object obj = null;
 				for (Method methodName : MethodNames) {
 					strMethodName_Upper = methodName.getName().toUpperCase();
+					//System.out.println("strMethodName_Upper:" + strMethodName_Upper);
 					if (strMethodName_Upper.equals("GETINSERTTIME")) {
 						obj = methodName.invoke(aop_Object, null);
 						break;
@@ -54,7 +47,7 @@ public class AopConfiguration {
 						methodName.invoke(aop_Object, operatorInfo[1]);
 					} else if (strMethodName_Upper.equals("SETLASTESTUPDATE")) {
 						methodName.invoke(aop_Object, operatorInfo[0]);
-					} else if (strMethodName_Upper.equals("GETINSERTTIME")) {
+					} else if (strMethodName_Upper.equals("SETINSERTTIME")) {
 						if(obj == null||obj.equals("")){
 							methodName.invoke(aop_Object, operatorInfo[0]);
 						}
@@ -67,5 +60,5 @@ public class AopConfiguration {
 			throw new RuntimeException(e);
 		}
 		return result;
-	}*/
+	}
 }

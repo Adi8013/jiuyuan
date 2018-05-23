@@ -52,13 +52,15 @@ function add() {
  */
 function edit() {
 	$('#dee-form-2').form('submit', {
-		url : '',
+		url : '/user/modifyone',
 		success : function(data) {
-			if (data) {
+			if (data == "success") {
 				$.messager.alert('信息提示', '提交成功！', 'info');
 				$('#dee-dialog-2').dialog('close');
+				reload();
 			} else {
 				$.messager.alert('信息提示', '提交失败！', 'info');
+				reload();
 			}
 		}
 	});
@@ -147,9 +149,11 @@ function openEdit() {
 			if (data == null) {
 				$.messager.alert('信息提示','参数有误，请联系管理员！','error');
 			} else {
+				console.log(data);
+				var pkHtml = '<input type="hidden" id="pk" name="pk"/>';
 				//绑定值
-				$('#dee-form-2').form('load', data)
 				$('#userAccount').attr('disabled',true);
+				$('#dee-form-2').prepend(pkHtml).form('load', data)
 				//$('#userAccount').removeAttr('data-options');
 			}
 		}

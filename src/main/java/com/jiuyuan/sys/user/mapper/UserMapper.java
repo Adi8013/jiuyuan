@@ -11,15 +11,15 @@ public interface UserMapper {
     // 根据主键批量删除用户
 	int deleteByPks(String[] pks);
 
-    int insert(User record);
+    int insert(User user);
 
-    int insertSelective(User record);
+    int insertSelective(User user);
 
     User selectByPrimaryKey(String pk);
 
-    int updateByPrimaryKeySelective(User record);
+    int updateByPrimaryKeySelective(User user);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(User user);
     
     // 根据用户名(用户名注册的时候保证唯一性)
     User loginUser(String userAccount);

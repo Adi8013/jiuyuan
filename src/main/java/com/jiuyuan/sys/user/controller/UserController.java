@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
+import com.jiuyuan.utils.OperatorUtil;
 import com.jiuyuan.utils.SystemConstant;
 import com.jiuyuan.utils.security.EncryptUtil;
 import com.alibaba.fastjson.JSON;  
@@ -35,11 +36,34 @@ public class UserController {
 		return reJSON;
 	}
 	
+	@RequestMapping("/modifyone")
+	public String updateUser(User user) {
+		User user_db = userService.selectByPrimaryKey(user.getPk());
+		// 设置前端传入的user值
+		// 姓名
+		user_db.setUserName(user.getUserName());
+		// 密码
+		user_db.setPassword(user.getPassword());
+		// 电话
+		user_db.setPhone(user.getPhone());
+		// 邮箱
+		user_db.setEmail(user.getEmail());
+		
+		int result = userService.updateByPrimaryKey_tran(user_db);
+		if (result > 0) {
+			return SystemConstant.SUCCESS;
+		} else {
+			return SystemConstant.ERROR;
+		}
+	}
+	
 	@RequestMapping(value="/addone", method = RequestMethod.POST)
 	public String addUser(User user) {
 		// 密码加密
 		user.setPassword(EncryptUtil.encrypt(user.getPassword()));
-		int result = userService.insert(user);
+		//  注册日期
+		user.setRegisterDate(OperatorUtil.getOperatorInfo()[0].substring(0, 10));
+		int result = userService.insert_tran(user);
 		if (result > 0) {
 			return SystemConstant.SUCCESS;
 		} else {

@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int insertSelective(User user) {
+	public int insertSelective_tran(User user) {
 		return userMapper.insertSelective(user);
 	}
 
 	@Override
-	public int insert(User user) {
+	public int insert_tran(User user) {
 		return userMapper.insert(user);
 	}
 
@@ -47,6 +47,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User selectByPrimaryKey(String pk) {
 		return userMapper.selectByPrimaryKey(pk);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective_tran(User user) {
+		return userMapper.updateByPrimaryKeySelective(user);
+	}
+
+	@Override
+	public int updateByPrimaryKey_tran(User user) {
+		return userMapper.updateByPrimaryKey(user);
 	}
 
 }

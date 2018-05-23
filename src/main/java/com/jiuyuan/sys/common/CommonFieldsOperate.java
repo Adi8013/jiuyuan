@@ -11,12 +11,12 @@ import com.jiuyuan.utils.OperatorUtil;
  * 每条数据的新增、修改操作时同时设置"最后更新时间"和"更新人"，“插入时间”字段依据原来是否有值进行赋值
  */
 
-public class CommonFieldsOperate {/*
-	*//**
+public class CommonFieldsOperate {
+	/**
 	 * 修改切入点参数，即修改对象的UpdatePerson和LastestUpdate和getInsertTime属性
 	 * @param pjp 切入点 即方法
 	 * @return
-	 *//*
+	 */
 	public Object doBasicProfiling(ProceedingJoinPoint pjp) {
 		Object result = "";	
 		try {
@@ -28,6 +28,8 @@ public class CommonFieldsOperate {/*
 			String strMethodName_Upper = null; 
 			// 如有setUpdatePerson和setLastestUpdate方法使修改该参数
 			for (Object aop_Object : MethodArgsObject) {
+				System.out.println("aop_Object:" + aop_Object);
+				/*
 				Method[] MethodNames =  aop_Object.getClass().getMethods();
 				Object obj = null;
 				for (Method methodName : MethodNames) {
@@ -49,6 +51,7 @@ public class CommonFieldsOperate {/*
 						}
 					}
 				}
+			*/
 			}
 			result = pjp.proceed();	
 		} catch (Throwable e) {
@@ -58,4 +61,4 @@ public class CommonFieldsOperate {/*
 		return result;
 	}
 	
-*/}
+}
