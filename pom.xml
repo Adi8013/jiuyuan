@@ -102,19 +102,24 @@
 			<artifactId>springloaded</artifactId>
 			<version>1.2.6.RELEASE</version>
 		</dependency>
-		
+
 		<!-- fastjson -->
-		 <dependency>  
-            <groupId>com.alibaba</groupId>  
-            <artifactId>fastjson</artifactId>  
-            <version>1.2.29</version>  
-        </dependency>  
-		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.29</version>
+		</dependency>
+
 		<!-- aop切面 -->
 		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-aop</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<!-- org.apache.commons.codec.binary.Base64加密解密类 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			</dependency>
 	</dependencies>
 
 	<build>

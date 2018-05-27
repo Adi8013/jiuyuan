@@ -2,12 +2,16 @@ package com.jiuyuan.sys.user.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jiuyuan.sys.common.ResponseMsg;
 import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
 import com.jiuyuan.utils.OperatorUtil;
@@ -43,7 +47,11 @@ public class UserController {
 		// 姓名
 		user_db.setUserName(user.getUserName());
 		// 密码
-		user_db.setPassword(user.getPassword());
+		if (user_db.getPassword().equals(user.getPassword().trim())) {
+			user_db.setPassword(user.getPassword());
+		} else {
+			user_db.setPassword(EncryptUtil.encrypt(EncryptUtil.getSalt(user_db.getUserAccount().trim(), user.getPassword().trim())));
+		}
 		// 电话
 		user_db.setPhone(user.getPhone());
 		// 邮箱
@@ -58,16 +66,23 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/addone", method = RequestMethod.POST)
-	public String addUser(User user) {
-		// 密码加密
-		user.setPassword(EncryptUtil.encrypt(user.getPassword()));
+	public ResponseMsg addUser(@Valid User user, BindingResult re) {
+		ResponseMsg rm = new ResponseMsg();
+		if (re.hasErrors()) {
+			 rm.setMsg(re.getFieldError().getDefaultMessage());
+			 return rm;
+		}
+		// 密码加密(加盐+｛｝)
+		user.setPassword(EncryptUtil.encrypt(EncryptUtil.getSalt(user.getUserAccount().trim(), user.getPassword().trim())));
 		//  注册日期
 		user.setRegisterDate(OperatorUtil.getOperatorInfo()[0].substring(0, 10));
 		int result = userService.insert_tran(user);
 		if (result > 0) {
-			return SystemConstant.SUCCESS;
+			 rm.setMsg(SystemConstant.SUCCESS);
+			 return rm;
 		} else {
-			return SystemConstant.ERROR;
+			 rm.setMsg(SystemConstant.ERROR_TIP);
+			 return rm;
 		}
 	}
 	

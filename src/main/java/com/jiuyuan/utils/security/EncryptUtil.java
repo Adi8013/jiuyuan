@@ -386,9 +386,16 @@ public class EncryptUtil {
             iv[i] = buf[i + 8];  
         }  
     }  
+    
+    public static String getSalt(String userAccount, String password) {
+    	return password +"{" + userAccount + "}";
+    }
       
     public static void main(String[] args) throws Exception {  
-        System.out.println(encrypt("123456"));  
-        System.out.println(decrypt("oqGiG3w2C/s4l945xI++My4Wpv2cCyLi"));
+    	byte[] encStr = EncryptStringUtils.getEncByteFromStr("123456");
+    	byte[] reString = EncryptStringUtils.getDecByteFromStr("123456");
+        System.out.println(encrypt("t3tbPqOpAjnIxCyW9NYshey/nvW87Mge7SMkbqOrY54="));  
+        // t3tbPqOpAjnIxCyW9NYshey/nvW87Mge7SMkbqOrY54=
+        System.out.println(decrypt("t3tbPqOpAjnIxCyW9NYshey/nvW87Mge7SMkbqOrY54="));
     }  
 }  

@@ -167,9 +167,9 @@ $(function() {
 						},
 						englishOrNum : {// 只能输入英文和数字
 							validator : function(value) {
-								return /^[a-zA-Z0-9_ ]{1,}$/.test(value);
+								return /^[a-zA-Z0-9_]{1,}$/.test(value);
 							},
-							message : '请输入英文、数字、下划线或者空格'
+							message : '请输入英文、数字、下划线'
 						},
 						xiaoshu : {
 							validator : function(value) {

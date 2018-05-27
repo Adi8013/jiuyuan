@@ -45,7 +45,7 @@
 			<table>
 				<tr>
 					<td width="60" height="10" align="right">帐 号:</td>
-					<td><input type="text" id="userAccount" name="userAccount" class="dee-text easyui-validatebox" data-options="validType:'unique',required:true" /></td>
+					<td><input type="text" id="userAccount" name="userAccount" class="dee-text easyui-validatebox" data-options="validType:['unique','englishOrNum'],required:true" /></td>
 				</tr>
 				<tr>
 					<td align="right">姓 名:</td>

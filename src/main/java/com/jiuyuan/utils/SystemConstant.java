@@ -19,6 +19,10 @@ public class SystemConstant {
 	 * 错误
 	 */
 	public static final String ERROR = "error";
+	/**
+	 * 事务错误通用提示
+	 */
+	public static final String ERROR_TIP = "操作失败，请联系管理员！";
 	
 	/**
 	 * 正确

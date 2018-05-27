@@ -21,7 +21,7 @@ public interface UserService {
 
 	// 根据主键批量删除用户
 	int deleteByPks(String[] pks);
-
+	@Transactional(readOnly = true)
 	User selectByPrimaryKey(String pk);
 
 	int updateByPrimaryKeySelective_tran(User record);

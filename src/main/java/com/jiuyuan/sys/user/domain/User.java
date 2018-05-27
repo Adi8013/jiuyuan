@@ -2,17 +2,19 @@ package com.jiuyuan.sys.user.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
 public class User implements Serializable{
 	private String pk;
-
+	@NotBlank(message = "帐号不能为空")
 	private String userAccount;
-
+	@NotBlank(message = "用户名不能为空")
 	private String userName;
 
 	private String userDeptCode;
 
 	private String userOrgCode;
-
+	@NotBlank(message = "密码不能为空")
 	private String password;
 
 	private String phone;
@@ -32,7 +34,7 @@ public class User implements Serializable{
 	private String minusMenu;
 
 	private String headPath;
-
+	
 	private String remark;
 
 	private String insertTime;

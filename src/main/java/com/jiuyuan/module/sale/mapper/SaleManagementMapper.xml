@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyuan.module.sale.mapper.SaleManagementMapper">
+  <resultMap id="BaseResultMap" type="com.jiuyuan.module.sale.domain.SaleManagement">
+    <id column="pk" jdbcType="VARCHAR" property="pk" />
+    <result column="SaleNo" jdbcType="VARCHAR" property="saleNo" />
+    <result column="ProductName" jdbcType="VARCHAR" property="productName" />
+    <result column="Size" jdbcType="VARCHAR" property="size" />
+    <result column="Unit" jdbcType="VARCHAR" property="unit" />
+    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="PerPrice" jdbcType="DECIMAL" property="perPrice" />
+    <result column="Receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Operator" jdbcType="VARCHAR" property="operator" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="InsertTime" jdbcType="VARCHAR" property="insertTime" />
+    <result column="LastestUpdate" jdbcType="VARCHAR" property="lastestUpdate" />
+    <result column="UpdatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <!-- 根据主键批量删除 -->
+  <delete id="deleteByPks" parameterType="java.lang.String">
+    delete from tsalemanagement
+    where pk in 
+    <foreach item="pks" collection="array" open="(" separator="," close=")">
+    	#{pks}
+    </foreach>
+  </delete>
+  <!-- 查询所有 -->
+  <select id="findAll" resultMap="BaseResultMap">
+  	 select * from tsalemanagement
+  </select>
+  <sql id="Base_Column_List">
+    pk, SaleNo, ProductName, Size, Unit, Quantity, PerPrice, Receiver, Address, Operator, 
+    Remark, InsertTime, LastestUpdate, UpdatePerson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tsalemanagement
+    where pk = #{pk,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tsalemanagement
+    where pk = #{pk,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
+    insert into tsalemanagement (pk, SaleNo, ProductName, 
+      Size, Unit, Quantity, 
+      PerPrice, Receiver, Address, 
+      Operator, Remark, InsertTime, 
+      LastestUpdate, UpdatePerson)
+    values (#{pk,jdbcType=VARCHAR}, #{saleNo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{perPrice,jdbcType=DECIMAL}, #{receiver,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{insertTime,jdbcType=VARCHAR}, 
+      #{lastestUpdate,jdbcType=VARCHAR}, #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
+    insert into tsalemanagement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pk != null">
+        pk,
+      </if>
+      <if test="saleNo != null">
+        SaleNo,
+      </if>
+      <if test="productName != null">
+        ProductName,
+      </if>
+      <if test="size != null">
+        Size,
+      </if>
+      <if test="unit != null">
+        Unit,
+      </if>
+      <if test="quantity != null">
+        Quantity,
+      </if>
+      <if test="perPrice != null">
+        PerPrice,
+      </if>
+      <if test="receiver != null">
+        Receiver,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="operator != null">
+        Operator,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="insertTime != null">
+        InsertTime,
+      </if>
+      <if test="lastestUpdate != null">
+        LastestUpdate,
+      </if>
+      <if test="updatePerson != null">
+        UpdatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pk != null">
+        #{pk,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNo != null">
+        #{saleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="perPrice != null">
+        #{perPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastestUpdate != null">
+        #{lastestUpdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
+    update tsalemanagement
+    <set>
+      <if test="saleNo != null">
+        SaleNo = #{saleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        ProductName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        Size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        Quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="perPrice != null">
+        PerPrice = #{perPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver != null">
+        Receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        Operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        InsertTime = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastestUpdate != null">
+        LastestUpdate = #{lastestUpdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null">
+        UpdatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pk = #{pk,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
+    update tsalemanagement
+    set SaleNo = #{saleNo,jdbcType=VARCHAR},
+      ProductName = #{productName,jdbcType=VARCHAR},
+      Size = #{size,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=VARCHAR},
+      Quantity = #{quantity,jdbcType=INTEGER},
+      PerPrice = #{perPrice,jdbcType=DECIMAL},
+      Receiver = #{receiver,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Operator = #{operator,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      InsertTime = #{insertTime,jdbcType=VARCHAR},
+      LastestUpdate = #{lastestUpdate,jdbcType=VARCHAR},
+      UpdatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where pk = #{pk,jdbcType=VARCHAR}
+  </update>
+</mapper>

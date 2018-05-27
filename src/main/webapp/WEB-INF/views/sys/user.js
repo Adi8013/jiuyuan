@@ -35,12 +35,13 @@ function add() {
 			return isValid; // 返回false终止表单提交
 		},
 		success : function(data) {
-			if (data == "success") {
+			var data = eval('(' + data + ')'); // change the JSON string to javascript object
+			if (data.msg == "success") {
 				$.messager.alert('操作提示', '添加用户成功！', 'info');
 				$('#dee-dialog-2').dialog('close');
 				reload();
 			} else {
-				$.messager.alert('操作提示', '添加用户失败！', 'error');
+				$.messager.alert('操作提示', data.msg, 'error');
 				reload();
 			}
 		}

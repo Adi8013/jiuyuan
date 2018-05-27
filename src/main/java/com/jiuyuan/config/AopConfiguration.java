@@ -1,12 +1,10 @@
 package com.jiuyuan.config;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +13,7 @@ import com.jiuyuan.utils.OperatorUtil;
 @Aspect //描述一个切面类，定义切面类的时候需要打上这个注解
 @Component
 public class AopConfiguration {
-	@Pointcut("execution(* com.jiuyuan.*.*.service.*.*_tran(..))")
+	@Pointcut("execution(* com.jiuyuan.*.*.service.impl.*.*_tran(..))")
     public void executeService() {
 
     }
