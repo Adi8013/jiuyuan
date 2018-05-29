@@ -31,6 +31,12 @@ $(function() {
 							},
 							message : '请输入汉字'
 						},
+						password : {
+							validator : function(value, param) {
+								return /[0-9a-zA-Z]{6,20}/.test(value);
+							},
+							message : '密码必须是数字或字母，长度6-20位'
+						},
 						english : {// 验证英语
 							validator : function(value) {
 								console.log(value);
@@ -59,7 +65,7 @@ $(function() {
 						},
 						mobile : {
 							validator : function(value, param) {
-								return /^(?:13\d|15\d|18\d)-?\d{5}(\d{3}|\*{3})$/
+								return /^((13\d)|(14[5|7])|(16\d)|(17\d)|(15([0-3]|[5-9]))|(18\d))\d{8}$/
 										.test(value);
 							},
 							message : '手机号码不正确'

@@ -12,6 +12,10 @@ $(document).ready(function() {
 function getVerify(obj) {
 	obj.src ="/defaultCaptcha?"+Math.random();
 }
+function chaneImg() {
+	var $img = $('#changImg').prev().children()[0];
+	$img.src ="/defaultCaptcha?"+Math.random();
+}
 
 //回车登录
 $(document).keydown(function(e){
@@ -52,11 +56,12 @@ function submitform(){
 		error : function() {// 请求失败处理函数
 		},
 		success : function(data) {
-			console.log(data);
-			if (data.status == "success") {
+			//console.log(data);
+			if (data.status == "200") {
 				window.location.href = actionurl;
 			}else{
 				$("#err").text(data.msg);
+				chaneImg();
 				return false;
 			}
 		}

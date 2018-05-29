@@ -3,10 +3,12 @@ package com.jiuyuan.sys.user.domain;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class User implements Serializable{
 	private String pk;
 	@NotBlank(message = "帐号不能为空")
+	@Pattern(regexp = "[0-9a-zA-Z]*", message = "帐号必须由字母和数字组成")
 	private String userAccount;
 	@NotBlank(message = "用户名不能为空")
 	private String userName;
@@ -15,8 +17,9 @@ public class User implements Serializable{
 
 	private String userOrgCode;
 	@NotBlank(message = "密码不能为空")
+	@Pattern(regexp = "[0-9a-zA-Z]{6,20}", message = "密码必须是数字或字母，长度6-20位")
 	private String password;
-
+	@Pattern(regexp = "^((13[0-9])|(14[5|7])|(16[0-9])|(17[0-9])|(15([0-3]|[5-9]))|(18[0-9]))\\d{8}$", message = "请正确输入11位手机号码")
 	private String phone;
 
 	private String email;

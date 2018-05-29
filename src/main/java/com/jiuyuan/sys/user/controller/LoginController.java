@@ -87,39 +87,29 @@ public class LoginController {
 	@ResponseBody
 	public ResponseMsg doCheckLogin(@RequestParam(name="userAccount") String userAccount, @RequestParam(name="password") String password,
 									@RequestParam(name="captcha") String captcha, HttpServletRequest request) {
-		ResponseMsg rm = new ResponseMsg();
 		HttpSession session = request.getSession();
 		if (!session.getAttribute(SystemConstant.KEY_CAPTCHA).equals(captcha.trim())) {
-			rm.setMsg("验证码错误");
-			rm.setStatus(SystemConstant.ERROR);
-			return rm;
+			return ResponseMsg.failed("验证码错误");
 		}
 		User user = userService.loginUser(userAccount);
 		if (user == null) {
-			rm.setMsg("用户名不存在！");
-			rm.setStatus(SystemConstant.ERROR);
-			return rm;
+			return ResponseMsg.failed("用户名不存在！");
 		} else {
 			// 解密
 			String deEncrypt = "";
 			try {
 				deEncrypt = EncryptUtil.decrypt(user.getPassword());
 			} catch (Exception e) {
-				rm.setMsg("密码错误！");
-				rm.setStatus(SystemConstant.ERROR);
-				e.printStackTrace();
-				return rm;
+				LOGGER.info(e.getMessage());
+				return ResponseMsg.error();
 			}
 			if (deEncrypt.equals(EncryptUtil.getSalt(userAccount, password))) {
 				session.setAttribute(SystemConstant.SYS_USER, user);
-				rm.setStatus(SystemConstant.SUCCESS);
+				return ResponseMsg.success(SystemConstant.SUCCESS);
 			} else {
-				rm.setMsg("密码错误！");
-				rm.setStatus(SystemConstant.ERROR);
-				return rm;
+				return ResponseMsg.failed("密码错误！");
 			}
 		}
-		return rm;
 	}
 	
 	

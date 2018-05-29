@@ -6,18 +6,20 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
 import com.jiuyuan.sys.common.ResponseMsg;
 import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
 import com.jiuyuan.utils.OperatorUtil;
 import com.jiuyuan.utils.SystemConstant;
-import com.jiuyuan.utils.security.EncryptUtil;
-import com.alibaba.fastjson.JSON;  
+import com.jiuyuan.utils.security.EncryptUtil;  
 
 @RestController
 @RequestMapping("/user")
@@ -33,18 +35,22 @@ public class UserController {
 		return reJSON;
 	}
 	
-	@RequestMapping("/findone")
+	@GetMapping("/findone")
 	public String getUserByPK(String pk) {
 		User user = userService.selectByPrimaryKey(pk);
 		String reJSON = JSON.toJSONString(user);
 		return reJSON;
 	}
 	
-	@RequestMapping("/modifyone")
+	@PostMapping("/modifyone")
 	public String updateUser(User user) {
 		User user_db = userService.selectByPrimaryKey(user.getPk());
 		// 设置前端传入的user值
 		// 姓名
+		System.out.println("对象：" + user);
+		System.out.println(user.getUserName());
+		System.out.println(user.getPk());
+		System.out.println("数据库对象：" + user_db);
 		user_db.setUserName(user.getUserName());
 		// 密码
 		if (user_db.getPassword().equals(user.getPassword().trim())) {

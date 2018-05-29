@@ -46,6 +46,7 @@
 				<tr>
 					<td width="60" height="10" align="right">帐 号:</td>
 					<td><input type="text" id="userAccount" name="userAccount" class="dee-text easyui-validatebox" data-options="validType:['unique','englishOrNum'],required:true" /></td>
+					<td><input type="hidden" id="pk" name="pk"/></td>
 				</tr>
 				<tr>
 					<td align="right">姓 名:</td>
@@ -57,7 +58,7 @@
 				</tr>
 				<tr>
 					<td align="right">电 话:</td>
-					<td><input type="text" id="phone" name="phone" class="dee-text" data-options="validType:'tel'" /></td>
+					<td><input type="text" id="phone" name="phone" class="dee-text easyui-validatebox" data-options="validType:'mobile'" /></td>
 				</tr>
 				<tr>
 					<td align="right">邮 箱:</td>

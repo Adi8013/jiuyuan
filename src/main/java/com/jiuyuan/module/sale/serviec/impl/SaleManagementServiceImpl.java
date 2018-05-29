@@ -14,6 +14,7 @@ public class SaleManagementServiceImpl implements SaleManagementService {
 
 	@Autowired
 	private SaleManagementMapper saleManagementService;
+	
 	@Override
 	public List<SaleManagement> findAll() {
 		return saleManagementService.findAll();

@@ -1,4 +1,7 @@
 $(function() {
+	$('.panel-tool-close').click(function() {
+		console.log(this);
+	});
 	$('#dee-datagrid-2').datagrid({
 		url : '/user/userlist',
 		loadFilter : pagerFilter,
@@ -63,6 +66,8 @@ function edit() {
 				$.messager.alert('信息提示', '提交失败！', 'info');
 				reload();
 			}
+			// 移除隐藏pk域
+			//$('#pk').remove();
 		}
 	});
 }
@@ -111,6 +116,11 @@ function openAdd() {
 		closed : false,
 		modal : true,
 		title : "添加信息",
+		onClose : function() {
+			//关闭事件：解决弹出窗口关闭后，验证消息还显示在最上面
+			//$('.validatebox-tip').remove(); // 并不可行
+			$('.tooltip').hide();
+		},
 		buttons : [ {
 			text : '确定',
 			iconCls : 'icon-ok',
@@ -150,11 +160,11 @@ function openEdit() {
 			if (data == null) {
 				$.messager.alert('信息提示','参数有误，请联系管理员！','error');
 			} else {
-				console.log(data);
-				var pkHtml = '<input type="hidden" id="pk" name="pk"/>';
+				//var pkHtml = '<input type="hidden" id="pk" name="pk"/>';
 				//绑定值
 				$('#userAccount').attr('disabled',true);
-				$('#dee-form-2').prepend(pkHtml).form('load', data)
+				//$('#dee-form-2').prepend(pkHtml).form('load', data)
+				$('#dee-form-2').form('load', data)
 				//$('#userAccount').removeAttr('data-options');
 			}
 		}
