@@ -17,8 +17,8 @@ public interface SaleManagementMapper {
 
     int updateByPrimaryKey(SaleManagement record);
     
-    List<SaleManagement> findAll();
-    
- // 根据主键批量删除用户
- 	int deleteByPks(String[] pks);
+    // 根据主键批量删除用户
+	int deleteByPks(String[] pks);
+	
+	List<SaleManagement> findAll();
 }

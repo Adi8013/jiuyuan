@@ -1,11 +1,20 @@
 package com.jiuyuan.module.sale.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class SaleManagement {
-    private String pk;
+import com.fasterxml.jackson.annotation.JsonView;
 
+public class SaleManagement implements Serializable{
+	
+	public interface SaleSimpleView {};
+    public interface SaleDetailView extends SaleSimpleView {};
+	
+    private String pk;
+    
     private String saleNo;
+    
+    private String operator;
 
     private String productName;
 
@@ -17,12 +26,6 @@ public class SaleManagement {
 
     private BigDecimal perPrice;
 
-    private String receiver;
-
-    private String address;
-
-    private String operator;
-
     private String remark;
 
     private String insertTime;
@@ -30,7 +33,8 @@ public class SaleManagement {
     private String lastestUpdate;
 
     private String updatePerson;
-
+    
+    @JsonView(SaleSimpleView.class)
     public String getPk() {
         return pk;
     }
@@ -38,7 +42,7 @@ public class SaleManagement {
     public void setPk(String pk) {
         this.pk = pk;
     }
-
+    @JsonView(SaleSimpleView.class)
     public String getSaleNo() {
         return saleNo;
     }
@@ -46,63 +50,7 @@ public class SaleManagement {
     public void setSaleNo(String saleNo) {
         this.saleNo = saleNo;
     }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getPerPrice() {
-        return perPrice;
-    }
-
-    public void setPerPrice(BigDecimal perPrice) {
-        this.perPrice = perPrice;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
+    @JsonView(SaleSimpleView.class)
     public String getOperator() {
         return operator;
     }
@@ -110,7 +58,47 @@ public class SaleManagement {
     public void setOperator(String operator) {
         this.operator = operator;
     }
+    @JsonView(SaleDetailView.class)
+    public String getProductName() {
+        return productName;
+    }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+    @JsonView(SaleDetailView.class)
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+    @JsonView(SaleDetailView.class)
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+    @JsonView(SaleDetailView.class)
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+    @JsonView(SaleDetailView.class)
+    public BigDecimal getPerPrice() {
+        return perPrice;
+    }
+
+    public void setPerPrice(BigDecimal perPrice) {
+        this.perPrice = perPrice;
+    }
+    @JsonView(SaleSimpleView.class)
     public String getRemark() {
         return remark;
     }
@@ -118,7 +106,7 @@ public class SaleManagement {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
+    @JsonView(SaleSimpleView.class)
     public String getInsertTime() {
         return insertTime;
     }
@@ -126,7 +114,7 @@ public class SaleManagement {
     public void setInsertTime(String insertTime) {
         this.insertTime = insertTime;
     }
-
+    @JsonView(SaleSimpleView.class)
     public String getLastestUpdate() {
         return lastestUpdate;
     }
@@ -134,7 +122,7 @@ public class SaleManagement {
     public void setLastestUpdate(String lastestUpdate) {
         this.lastestUpdate = lastestUpdate;
     }
-
+    @JsonView(SaleSimpleView.class)
     public String getUpdatePerson() {
         return updatePerson;
     }
