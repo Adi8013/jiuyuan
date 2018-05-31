@@ -31,11 +31,6 @@ public class SaleManagementServiceImpl implements SaleManagementService {
 	}
 
 	@Override
-	public int deleteByPks(String[] pks) {
-		return saleManagementService.deleteByPks(pks);
-	}
-
-	@Override
 	public SaleManagement selectByPrimaryKey(String pk) {
 		return saleManagementService.selectByPrimaryKey(pk);
 	}

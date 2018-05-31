@@ -11,12 +11,11 @@ $(function() {
 		fit : true,
 		columns : [ [ 
 			{checkbox : true}, 
-			{field : 'saleNo',title : '销售单号',width : 100}, 
-			{field : 'productName',title : '产品名称',width : 100}, 
-			{field : 'size',title : '型号规格',width : 100}, 
-			{field : 'unit',title : '单位',width : 100,align : 'right'}, 
-			{field : 'quantity',title : '数量',width : 100}, 
-			{field : 'perPrice',title : '单价',width : 100} 
+			{field : 'saleNo',title : '销售单号',width : 60}, 
+			{field : 'operator',title : '制单人',width : 40}, 
+			{field : 'receiver',title : '收货单位',width : 100}, 
+			{field : 'address',title : '地址',width : 200}, 
+			{field : 'insertTime',title : '时间',width : 100},
 		] ]
 	});
 });

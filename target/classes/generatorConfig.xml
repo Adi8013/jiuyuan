@@ -24,7 +24,7 @@
 			targetPackage="com.jiuyuan.module.sale.mapper" targetProject="jiuyuan"
 			type="XMLMAPPER" />
 		<!-- 配置要生成的实体 -->
-		<table tableName="tSaleManagement" domainObjectName="SaleManagement"
+		<table tableName="tSaleDetail" domainObjectName="SaleDetail"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">

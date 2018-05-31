@@ -5,31 +5,19 @@
     <id column="pk" jdbcType="VARCHAR" property="pk" />
     <result column="SaleNo" jdbcType="VARCHAR" property="saleNo" />
     <result column="Operator" jdbcType="VARCHAR" property="operator" />
-    <result column="ProductName" jdbcType="VARCHAR" property="productName" />
-    <result column="Size" jdbcType="VARCHAR" property="size" />
-    <result column="Unit" jdbcType="VARCHAR" property="unit" />
-    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
-    <result column="PerPrice" jdbcType="DECIMAL" property="perPrice" />
+    <result column="Receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
     <result column="Remark" jdbcType="VARCHAR" property="remark" />
     <result column="InsertTime" jdbcType="VARCHAR" property="insertTime" />
     <result column="LastestUpdate" jdbcType="VARCHAR" property="lastestUpdate" />
     <result column="UpdatePerson" jdbcType="VARCHAR" property="updatePerson" />
   </resultMap>
   <sql id="Base_Column_List">
-    pk, SaleNo, Operator, ProductName, Size, Unit, Quantity, PerPrice, Remark, InsertTime, 
-    LastestUpdate, UpdatePerson
+    pk, SaleNo, Operator, Receiver, Address, Remark, InsertTime, LastestUpdate, UpdatePerson
   </sql>
-  <!-- 根据主键批量删除 -->
-  <delete id="deleteByPks" parameterType="java.lang.String">
-    delete from tsalemanagement
-    where pk in 
-    <foreach item="pks" collection="array" open="(" separator="," close=")">
-    	#{pks}
-    </foreach>
-  </delete>
   <!-- 查询所有 -->
   <select id="findAll" resultMap="BaseResultMap">
-  	 select * from tsalemanagement
+  	 select <include refid="Base_Column_List" /> from tsalemanagement
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -43,13 +31,11 @@
   </delete>
   <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
     insert into tsalemanagement (pk, SaleNo, Operator, 
-      ProductName, Size, Unit, 
-      Quantity, PerPrice, Remark, 
+      Receiver, Address, Remark, 
       InsertTime, LastestUpdate, UpdatePerson
       )
     values (#{pk,jdbcType=VARCHAR}, #{saleNo,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
-      #{productName,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
-      #{quantity,jdbcType=INTEGER}, #{perPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{receiver,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{insertTime,jdbcType=VARCHAR}, #{lastestUpdate,jdbcType=VARCHAR}, #{updatePerson,jdbcType=VARCHAR}
       )
   </insert>
@@ -65,20 +51,11 @@
       <if test="operator != null">
         Operator,
       </if>
-      <if test="productName != null">
-        ProductName,
+      <if test="receiver != null">
+        Receiver,
       </if>
-      <if test="size != null">
-        Size,
-      </if>
-      <if test="unit != null">
-        Unit,
-      </if>
-      <if test="quantity != null">
-        Quantity,
-      </if>
-      <if test="perPrice != null">
-        PerPrice,
+      <if test="address != null">
+        Address,
       </if>
       <if test="remark != null">
         Remark,
@@ -103,20 +80,11 @@
       <if test="operator != null">
         #{operator,jdbcType=VARCHAR},
       </if>
-      <if test="productName != null">
-        #{productName,jdbcType=VARCHAR},
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
       </if>
-      <if test="size != null">
-        #{size,jdbcType=VARCHAR},
-      </if>
-      <if test="unit != null">
-        #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="quantity != null">
-        #{quantity,jdbcType=INTEGER},
-      </if>
-      <if test="perPrice != null">
-        #{perPrice,jdbcType=DECIMAL},
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -141,20 +109,11 @@
       <if test="operator != null">
         Operator = #{operator,jdbcType=VARCHAR},
       </if>
-      <if test="productName != null">
-        ProductName = #{productName,jdbcType=VARCHAR},
+      <if test="receiver != null">
+        Receiver = #{receiver,jdbcType=VARCHAR},
       </if>
-      <if test="size != null">
-        Size = #{size,jdbcType=VARCHAR},
-      </if>
-      <if test="unit != null">
-        Unit = #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="quantity != null">
-        Quantity = #{quantity,jdbcType=INTEGER},
-      </if>
-      <if test="perPrice != null">
-        PerPrice = #{perPrice,jdbcType=DECIMAL},
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         Remark = #{remark,jdbcType=VARCHAR},
@@ -175,11 +134,8 @@
     update tsalemanagement
     set SaleNo = #{saleNo,jdbcType=VARCHAR},
       Operator = #{operator,jdbcType=VARCHAR},
-      ProductName = #{productName,jdbcType=VARCHAR},
-      Size = #{size,jdbcType=VARCHAR},
-      Unit = #{unit,jdbcType=VARCHAR},
-      Quantity = #{quantity,jdbcType=INTEGER},
-      PerPrice = #{perPrice,jdbcType=DECIMAL},
+      Receiver = #{receiver,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
       Remark = #{remark,jdbcType=VARCHAR},
       InsertTime = #{insertTime,jdbcType=VARCHAR},
       LastestUpdate = #{lastestUpdate,jdbcType=VARCHAR},

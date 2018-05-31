@@ -16,9 +16,6 @@ public interface SaleManagementService {
 
 	int insert_tran(SaleManagement record);
 
-	// 根据主键批量删除用户
-	int deleteByPks(String[] pks);
-	
 	@Transactional(readOnly = true)
 	SaleManagement selectByPrimaryKey(String pk);
 

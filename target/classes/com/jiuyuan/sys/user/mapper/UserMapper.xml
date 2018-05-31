@@ -29,7 +29,7 @@
   </sql>
   <!-- 查询所有 -->
   <select id="findAll" resultMap="BaseResultMap">
-  	 select * from tuser
+  	 select <include refid="Base_Column_List" /> from tuser
   </select>
   <!-- 根据用户名登录 -->
   <select id="loginUser" parameterType="java.lang.String" resultMap="BaseResultMap">

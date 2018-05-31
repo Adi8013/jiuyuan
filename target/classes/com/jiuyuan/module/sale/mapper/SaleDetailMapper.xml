@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyuan.module.sale.mapper.SaleDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jiuyuan.module.sale.domain.SaleDetail">
+    <result column="pk" jdbcType="VARCHAR" property="pk" />
+    <result column="SaleNo" jdbcType="VARCHAR" property="saleNo" />
+    <result column="ProductName" jdbcType="VARCHAR" property="productName" />
+    <result column="Size" jdbcType="VARCHAR" property="size" />
+    <result column="Unit" jdbcType="VARCHAR" property="unit" />
+    <result column="Quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="PerPrice" jdbcType="DECIMAL" property="perPrice" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="InsertTime" jdbcType="VARCHAR" property="insertTime" />
+    <result column="LastestUpdate" jdbcType="VARCHAR" property="lastestUpdate" />
+    <result column="UpdatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleDetail">
+    insert into tsaledetail (pk, SaleNo, ProductName, 
+      Size, Unit, Quantity, 
+      PerPrice, Remark, InsertTime, 
+      LastestUpdate, UpdatePerson)
+    values (#{pk,jdbcType=VARCHAR}, #{saleNo,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{perPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{insertTime,jdbcType=VARCHAR}, 
+      #{lastestUpdate,jdbcType=VARCHAR}, #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiuyuan.module.sale.domain.SaleDetail">
+    insert into tsaledetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pk != null">
+        pk,
+      </if>
+      <if test="saleNo != null">
+        SaleNo,
+      </if>
+      <if test="productName != null">
+        ProductName,
+      </if>
+      <if test="size != null">
+        Size,
+      </if>
+      <if test="unit != null">
+        Unit,
+      </if>
+      <if test="quantity != null">
+        Quantity,
+      </if>
+      <if test="perPrice != null">
+        PerPrice,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="insertTime != null">
+        InsertTime,
+      </if>
+      <if test="lastestUpdate != null">
+        LastestUpdate,
+      </if>
+      <if test="updatePerson != null">
+        UpdatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pk != null">
+        #{pk,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNo != null">
+        #{saleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="perPrice != null">
+        #{perPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastestUpdate != null">
+        #{lastestUpdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,15 +1,21 @@
 package com.jiuyuan.module.sale.domain;
 
-public class SaleManagement {
+import java.math.BigDecimal;
+
+public class SaleDetail {
     private String pk;
 
     private String saleNo;
 
-    private String operator;
+    private String productName;
 
-    private String receiver;
+    private String size;
 
-    private String address;
+    private String unit;
+
+    private Integer quantity;
+
+    private BigDecimal perPrice;
 
     private String remark;
 
@@ -35,28 +41,44 @@ public class SaleManagement {
         this.saleNo = saleNo;
     }
 
-    public String getOperator() {
-        return operator;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public String getSize() {
+        return size;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPerPrice() {
+        return perPrice;
+    }
+
+    public void setPerPrice(BigDecimal perPrice) {
+        this.perPrice = perPrice;
     }
 
     public String getRemark() {
