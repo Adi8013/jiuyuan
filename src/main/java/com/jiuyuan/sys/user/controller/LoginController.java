@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.jiuyuan.sys.common.ResponseMsg;
 import com.jiuyuan.sys.user.domain.User;
 import com.jiuyuan.sys.user.service.UserService;
@@ -93,6 +91,7 @@ public class LoginController {
 		}
 		User user = userService.loginUser(userAccount);
 		if (user == null) {
+			user.getUserAccount();
 			return ResponseMsg.failed("用户名不存在！");
 		} else {
 			// 解密

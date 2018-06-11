@@ -60,6 +60,7 @@ function submitform(){
 			if (data.status == "200") {
 				window.location.href = actionurl;
 			}else{
+				console.log(data);
 				$("#err").text(data.msg);
 				chaneImg();
 				return false;

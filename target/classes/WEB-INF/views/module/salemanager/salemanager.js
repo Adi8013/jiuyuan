@@ -11,6 +11,15 @@ $(function() {
 		fit : true,
 		columns : [ [ 
 			{checkbox : true}, 
+			{field:'option',title:'操作',minwidth:180,formatter:function(value,row,index){
+				var oper_container=''; 
+				if(row.operator==top.strUserAccount){
+						oper_container += "<a href='javascript:void(0);' class='modifyFunc' params=\"[" + row.pk + "]\" >修改</a>  ";
+						oper_container += "<a href='javascript:void(0);' class='deleteFunc' params=\"[" + row.pk + "]\" >删除</a>  ";
+				}
+				oper_container += "<a href='javascript:void(0);' onclick='view(\""+row.pk+"\")' >查看</a>  ";					
+		    	return oper_container;
+	        }},
 			{field : 'saleNo',title : '销售单号',width : 60}, 
 			{field : 'operator',title : '制单人',width : 40}, 
 			{field : 'receiver',title : '收货单位',width : 100}, 
@@ -29,7 +38,21 @@ function add() {
 		onSubmit : function() {
 			var isValid = $(this).form('validate');
 			if (!isValid) {
-				$.messager.alert('操作提示', '请按要求填写内容', 'warnning');
+				//$.messager.alert('操作提示', '请按要求填写内容', 'warnning');
+				top.layer.open({
+					title: "信息",
+					content: "请按要求填写内容",
+					icon: 2,
+					closeBtn: 2,
+					btn: ["确定", "取消"],
+					yes: function(windows) {
+						//deleteDetalistAll();
+						top.layer.close(windows);
+					},
+					cancel: function(windows) {
+						top.layer.close(windows);
+					}
+				});
 			}
 			return isValid; // 返回false终止表单提交
 		},

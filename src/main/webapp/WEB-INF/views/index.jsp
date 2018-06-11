@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page language="java" import="com.jiuyuan.sys.user.domain.User"%>
+<%@ page language="java" import="com.jiuyuan.utils.SystemConstant"%>
+<%
+	User OperateUser = (User) session.getAttribute(SystemConstant.SYS_USER);//当前操作用户
+%>
 <!DOCTYPE>
 <html>
 <head>
@@ -8,6 +12,10 @@
 <meta name="copyright" content="All Rights Reserved, Copyright (C) 2013, Wuyeguo, Ltd." />
 <title>九元建材管理系统</title>
 <%@include file="/WEB-INF/views/base/base.jsp"%>
+<script language="javascript">
+	/** 操作用户的信息  **/  
+	var strUserAccount = "<%=OperateUser.getUserAccount()%>";//用户账号
+</script>
 </head>
 <body class="easyui-layout">
 	<!-- begin of header -->
