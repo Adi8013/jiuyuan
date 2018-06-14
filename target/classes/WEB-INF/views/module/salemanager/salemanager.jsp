@@ -7,6 +7,9 @@
 
 <title>Insert title here</title>
 <%@include file="/WEB-INF/views/base/base.jsp"%>
+<!-- <script>
+	var path = "${path}";
+</script> -->
 <script type="text/javascript" src= "${path}/module/salemanager/salemanager.js"></script>
 </head>
 <body>

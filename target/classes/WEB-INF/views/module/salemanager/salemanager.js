@@ -30,6 +30,26 @@ $(function() {
 });
 
 /**
+ * Name 查看销售单
+ */
+function view(pk) {
+	top.layer.open({
+		type:2,
+		title:"九元古建砖瓦销售单",
+		shift:1,
+		closeBtn:2,
+		area:["1000px","700px"],
+		shade:false,
+		zIndex:'2018',
+		success:function(layero){
+			top.layer.setTop(layero);
+		},
+		content: "/sale/saleview?salePk=" + pk
+	});
+}
+
+
+/**
  * Name 添加记录
  */
 function add() {

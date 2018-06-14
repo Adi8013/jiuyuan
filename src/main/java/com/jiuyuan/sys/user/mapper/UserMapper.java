@@ -2,8 +2,11 @@ package com.jiuyuan.sys.user.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.jiuyuan.sys.user.domain.User;
 
+@Repository
 public interface UserMapper {
     
 	int deleteByPrimaryKey(String pk);

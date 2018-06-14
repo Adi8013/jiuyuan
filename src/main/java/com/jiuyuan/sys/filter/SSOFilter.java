@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jiuyuan.sys.context.SessionContextHelper;
 import com.jiuyuan.utils.SystemConstant;
 
 public class SSOFilter implements Filter{
-
+	Logger logger = LoggerFactory.getLogger(SSOFilter.class);
 	@Override
 	public void destroy() {
 		
@@ -40,7 +43,7 @@ public class SSOFilter implements Filter{
 		//System.out.println("路径：" + path);
 		if(!path.endsWith(".js") && !path.endsWith(".css")&& !path.endsWith(".ico")&& !path.endsWith(".png")&& !path.endsWith(".jpg") && !path.endsWith(".gif")
 				&& !path.equals("/login")&& !path.equals("/defaultCaptcha")&& !path.equals("/doCheckLogin")){
-			System.out.println("拦截路径***"+path );
+			logger.debug("拦截路径***"+path );
 			HttpSession session = httpRequest.getSession();
 			if(session.getAttribute(SystemConstant.SYS_USER) == null){
 				httpResponse.sendRedirect(httpRequest.getContextPath()+"/login");

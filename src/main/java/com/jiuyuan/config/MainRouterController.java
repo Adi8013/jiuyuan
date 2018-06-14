@@ -19,7 +19,6 @@ public class MainRouterController {
 	 */
 	@RequestMapping("salejsp")
 	public String sale() {
-		System.out.println("进来了");
 		return "module/salemanager/salemanager";
 	}
 }

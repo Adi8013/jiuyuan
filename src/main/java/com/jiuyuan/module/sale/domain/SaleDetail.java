@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class SaleDetail {
     private String pk;
 
+    private String salePk;
+
     private String saleNo;
 
     private String productName;
@@ -31,6 +33,14 @@ public class SaleDetail {
 
     public void setPk(String pk) {
         this.pk = pk;
+    }
+
+    public String getSalePk() {
+        return salePk;
+    }
+
+    public void setSalePk(String salePk) {
+        this.salePk = salePk;
     }
 
     public String getSaleNo() {
