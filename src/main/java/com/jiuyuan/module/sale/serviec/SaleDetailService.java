@@ -21,4 +21,12 @@ public interface SaleDetailService {
 	int updateByPrimaryKey_tran(SaleDetail record);
 	
 	int deleteByPrimaryKey(String pk);
+	
+	/**
+	 * 根据销售单号查询总金额
+	 * @param saleNo
+	 * @return
+	 */
+	Double querySumPriceBySaleNo(String saleNo);
+	
 }

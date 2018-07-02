@@ -7,13 +7,14 @@
     <result column="Operator" jdbcType="VARCHAR" property="operator" />
     <result column="Receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="CreateDate" jdbcType="VARCHAR" property="createDate" />
     <result column="Remark" jdbcType="VARCHAR" property="remark" />
     <result column="InsertTime" jdbcType="VARCHAR" property="insertTime" />
     <result column="LastestUpdate" jdbcType="VARCHAR" property="lastestUpdate" />
     <result column="UpdatePerson" jdbcType="VARCHAR" property="updatePerson" />
   </resultMap>
   <sql id="Base_Column_List">
-    pk, SaleNo, Operator, Receiver, Address, Remark, InsertTime, LastestUpdate, UpdatePerson
+    pk, SaleNo, Operator, Receiver, Address, CreateDate, Remark, InsertTime, LastestUpdate, UpdatePerson
   </sql>
   <!-- 查询所有 -->
   <select id="findAll" resultMap="BaseResultMap">

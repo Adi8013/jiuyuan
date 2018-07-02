@@ -13,12 +13,4 @@ public class MainRouterController {
 	public String user() {
 		return "sys/user";
 	}
-	/**
-	 * 销售单管理列表
-	 * @return
-	 */
-	@RequestMapping("salejsp")
-	public String sale() {
-		return "module/salemanager/salemanager";
-	}
 }

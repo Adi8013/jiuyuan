@@ -24,6 +24,10 @@
   	select <include refid="Base_Column_List" /> from tsaledetail where salePk = #{salePk}
   </select>
   
+  <select id="querySumPriceBySaleNo" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+  	SELECT SUM(t.persum) FROM (SELECT Quantity*PerPrice persum FROM tSaleDetail WHERE `SaleNo`= #{saleNo}) t;
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tsaledetail
     where pk = #{pk,jdbcType=VARCHAR}

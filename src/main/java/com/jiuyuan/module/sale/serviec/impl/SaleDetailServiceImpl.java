@@ -45,4 +45,8 @@ public class SaleDetailServiceImpl implements SaleDetailService {
 		return detailMapper.deleteByPrimaryKey(pk);
 	}
 
+	@Override
+	public Double querySumPriceBySaleNo(String saleNo) {
+		return detailMapper.querySumPriceBySaleNo(saleNo).doubleValue();
+	}
 }

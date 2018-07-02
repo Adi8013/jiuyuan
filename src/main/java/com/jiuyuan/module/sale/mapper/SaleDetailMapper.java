@@ -1,5 +1,6 @@
 package com.jiuyuan.module.sale.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -19,5 +20,7 @@ public interface SaleDetailMapper {
     int updateByPrimaryKey(SaleDetail record);
     
     int deleteByPrimaryKey(String pk);
+
+	BigDecimal querySumPriceBySaleNo(String saleNo);
     
 }

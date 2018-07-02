@@ -10,6 +10,8 @@ public class SaleManagement {
     private String receiver;
 
     private String address;
+    
+    private String createDate;
 
     private String remark;
 
@@ -18,6 +20,11 @@ public class SaleManagement {
     private String lastestUpdate;
 
     private String updatePerson;
+    
+    /** 总金额*/
+    private Double totalPrice;
+    /** 人民币大写*/
+    private String rmbCH;
 
     public String getPk() {
         return pk;
@@ -90,4 +97,28 @@ public class SaleManagement {
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
     }
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getRmbCH() {
+		return rmbCH;
+	}
+
+	public void setRmbCH(String rmbCH) {
+		this.rmbCH = rmbCH;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }
