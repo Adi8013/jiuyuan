@@ -33,18 +33,30 @@ function add() {
 		onSubmit : function() {
 			var isValid = $(this).form('validate');
 			if (!isValid) {
-				$.messager.alert('操作提示', '请按要求填写内容', 'warnning');
+				//$.messager.alert('操作提示', '请按要求填写内容', 'warnning');
+				top.layer.alert('请按要求填写内容',{
+					icon:2,
+					closeBtn:0
+				});
 			}
 			return isValid; // 返回false终止表单提交
 		},
 		success : function(data) {
 			var data = eval('(' + data + ')'); // change the JSON string to javascript object
 			if (data.msg == "success") {
-				$.messager.alert('操作提示', '添加用户成功！', 'info');
+				//$.messager.alert('操作提示', '添加用户成功！', 'info');
+				top.layer.alert('添加用户成功！',{
+					icon:1,
+					closeBtn:0
+				});
 				$('#dee-dialog-2').dialog('close');
 				reload();
 			} else {
-				$.messager.alert('操作提示', data.msg, 'error');
+				//$.messager.alert('操作提示', data.msg, 'error');
+				top.layer.alert(data.msg,{
+					icon:5,
+					closeBtn:0
+				});
 				reload();
 			}
 		}
@@ -59,11 +71,19 @@ function edit() {
 		url : '/user/modifyone',
 		success : function(data) {
 			if (data == "success") {
-				$.messager.alert('信息提示', '提交成功！', 'info');
+				//$.messager.alert('信息提示', '提交成功！', 'info');
+				top.layer.alert('修改成功',{
+					icon:1,
+					closeBtn:0
+				});
 				$('#dee-dialog-2').dialog('close');
 				reload();
 			} else {
-				$.messager.alert('信息提示', '提交失败！', 'info');
+				//$.messager.alert('信息提示', '提交失败！', 'info');
+				top.layer.alert('修改失败',{
+					icon:5,
+					closeBtn:0
+				});
 				reload();
 			}
 			// 移除隐藏pk域
@@ -80,7 +100,11 @@ function remove() {
 		if (result) {
 			var items = $('#dee-datagrid-2').datagrid('getSelections');// 选择多条记录
 			if (items.length == 0) {
-				$.messager.alert('信息提示', '请至少选择一条数据！', 'error');
+				//$.messager.alert('信息提示', '请至少选择一条数据！', 'error');
+				top.layer.alert('请至少选择一条数据！',{
+					icon:5,
+					closeBtn:0
+				});
 				return;
 			}
 			var ids = [];
@@ -93,10 +117,18 @@ function remove() {
 				data:{"pks":ids},
 				success : function(data) {
 					if (data) {
-						$.messager.alert('信息提示', '删除成功！', 'info');
+						//$.messager.alert('信息提示', '删除成功！', 'info');
+						top.layer.alert('删除成功！',{
+							icon:1,
+							closeBtn:0
+						});
 						reload();
 					} else {
-						$.messager.alert('信息提示', '删除失败，请联系管理员！', 'error');
+						//$.messager.alert('信息提示', '删除失败，请联系管理员！', 'error');
+						top.layer.alert('删除失败，请联系管理员！',{
+							icon:5,
+							closeBtn:0
+						});
 						reload();
 					}
 				}
@@ -144,7 +176,11 @@ function openEdit() {
 	$('#dee-form-2').form('clear');
 	var item = $('#dee-datagrid-2').datagrid('getSelected');// 多选也是选到一条记录
 	if (item == null) {
-		$.messager.alert('信息提示','请选择一条数据进行修改！','error');
+		//$.messager.alert('信息提示','请选择一条数据进行修改！','error');
+		top.layer.alert('请选择一条数据进行修改！',{
+			icon:5,
+			closeBtn:0
+		});
 		return;
 	}
 	//alert(item.productid);return;

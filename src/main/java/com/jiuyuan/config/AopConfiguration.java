@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import com.jiuyuan.utils.OperatorUtil;
+import com.jiuyuan.utils.UUIDUtil;
 
 @Aspect //描述一个切面类，定义切面类的时候需要打上这个注解
 @Component
@@ -45,6 +46,10 @@ public class AopConfiguration {
 						methodName.invoke(aop_Object, operatorInfo[1]);
 					} else if (strMethodName_Upper.equals("SETLASTESTUPDATE")) {
 						methodName.invoke(aop_Object, operatorInfo[0]);
+					} else if (strMethodName_Upper.equals("SETPK")) {
+						if(obj == null||obj.equals("")){
+							methodName.invoke(aop_Object, UUIDUtil.getRandomUUIDStr());
+						}
 					} else if (strMethodName_Upper.equals("SETINSERTTIME")) {
 						if(obj == null||obj.equals("")){
 							methodName.invoke(aop_Object, operatorInfo[0]);

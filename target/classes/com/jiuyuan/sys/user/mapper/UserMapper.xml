@@ -65,7 +65,7 @@
       userLevelCode, MinusMenu, HeadPath, 
       Remark, InsertTime, LastestUpdate, 
       UpdatePerson)
-    values ((REPLACE((SELECT UUID()),'-','')), #{userAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+    values (#{pk,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userDeptCode,jdbcType=VARCHAR}, #{userOrgCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, 
       #{lastLoginDate,jdbcType=VARCHAR}, #{addMenu,jdbcType=VARCHAR}, #{usualMenu,jdbcType=VARCHAR}, 
