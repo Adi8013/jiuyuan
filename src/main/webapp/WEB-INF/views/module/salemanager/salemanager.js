@@ -24,7 +24,9 @@ $(function() {
 			{field : 'operator',title : '制单人',width : 40}, 
 			{field : 'receiver',title : '收货单位',width : 100}, 
 			{field : 'address',title : '地址',width : 200}, 
-			{field : 'insertTime',title : '时间',width : 100},
+			{field : 'insertTime',title : '制单时间',width : 100},
+			{field : 'updatePerson',title : '最后更新人',width : 100},
+			{field : 'lastestUpdate',title : '最后更新时间',width : 100},
 		] ]
 	});
 });
@@ -47,6 +49,28 @@ function view(pk) {
 		content: "/sale/saleview?salePk=" + pk
 	});
 }
+
+
+/**
+ * Name 打开添加页面
+ */
+function openAdd() {
+	top.layer.open({
+		type:2,
+		title:"添加销售单",
+		shift:1,
+		closeBtn:2,
+		area:["1100px","700px"],
+		shade:false,
+		zIndex:'2018',
+		success:function(layero){
+			top.layer.setTop(layero);
+		},
+		content: "/sale/editSale?method=" + "add"
+	});
+}
+
+
 
 
 /**
@@ -145,7 +169,7 @@ function remove() {
 /**
  * Name 打开添加窗口
  */
-function openAdd() {
+/*function openAdd() {
 	$('#userAccount').attr('disabled',false);
 	$('#userAccount').validatebox('reduce');
 	$('#dee-form-2').form('clear');
@@ -166,7 +190,7 @@ function openAdd() {
 			}
 		} ]
 	});
-}
+}*/
 
 /**
  * Name 打开修改窗口

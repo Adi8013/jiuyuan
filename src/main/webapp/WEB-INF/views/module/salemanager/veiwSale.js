@@ -1,7 +1,4 @@
 
-function view2() {
-	alert(111);
-}
 
 $(function() {
 	var td = $("td[attr = '1']");

@@ -47,10 +47,6 @@ public class UserController {
 		User user_db = userService.selectByPrimaryKey(user.getPk());
 		// 设置前端传入的user值
 		// 姓名
-		System.out.println("对象：" + user);
-		System.out.println(user.getUserName());
-		System.out.println(user.getPk());
-		System.out.println("数据库对象：" + user_db);
 		user_db.setUserName(user.getUserName());
 		// 密码
 		if (user_db.getPassword().equals(user.getPassword().trim())) {

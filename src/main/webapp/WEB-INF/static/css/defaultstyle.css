@@ -316,3 +316,92 @@ a.l-btn{display:inline-table}
 #exid_div_content hr{
 	background-color:#1fb5ad;
 }
+
+/*确定按钮*/
+.bt_ensure[type="button"]{
+	width:auto;
+    height: 26px;
+    margin-left: 8px;
+    text-indent: 0px;
+    cursor: pointer;
+    padding: 0px 10px;
+    display: inline-block;
+    color: #ffffff !important;
+    text-align: center;
+    font-size: 12px;
+    line-height: 24px;
+    border-radius: 2px;
+    background-color: #72D872;
+    border: medium none;
+}
+}
+.bt_ensure{
+	cursor:pointer;
+	padding:0 10px; 
+	height:26px;
+	display:inline-block; 
+	color:#ffffff !important; 
+	text-align:center; 
+	font-size:12px; 
+	line-height:24px; 
+	border:none; 
+	background:#72D872;
+	border-radius:2px; 
+}
+.bt_ensure:hover{background:#7DD53C !important;}
+
+.bt_common[type="button"]{
+	height:26px;
+	margin-left:8px;
+	text-indent:0px;
+	cursor:pointer;
+	padding:0 10px;
+	display:inline-block;
+	color:#333333;
+	text-align:center;
+	font-size:12px; 
+	line-height:24px;
+	border:none;
+	background-color:#F7F7F7;
+	border: 1px solid #DDDDDD;
+}
+.bt_common[type="button"]:hover{border: 1px solid #DDDDDD;background-color:#FFFFFF !important;}
+
+/*不可编辑文本样式*/
+.disableText{background-color:#ebecec !important;color:#000000;}
+/*按钮样式*/
+/*灰色平面按钮*/
+/*按钮类样式*/
+.bt_cancel[type="button"]{
+	/*width:50px;*/
+	width:auto;
+	height:26px;
+	margin-left:8px;
+	text-indent:0px;
+	cursor:pointer;
+	padding:0 10px;
+	display:inline-block;
+	color:#ffffff;
+	text-align:center;
+	font-size:12px; 
+	line-height:24px;
+	border:none; 	 	 
+	border-radius:2px; 
+	background-color:#666666;
+	border: none;
+}
+/*取消按钮*/
+.bt_cancel{
+	cursor:pointer;
+	padding:0 10px;
+	display:inline-block;
+	color:#ffffff;
+	text-align:center;
+	font-size:12px; 
+	line-height:24px;
+	border:none; 
+	background:#666666;
+	margin-left:5px;
+	border:none; 
+}
+.bt_cancel:hover{background:#999999 !important;}

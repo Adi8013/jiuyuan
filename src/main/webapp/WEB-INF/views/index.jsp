@@ -15,6 +15,7 @@
 <script language="javascript">
 	/** 操作用户的信息  **/  
 	var strUserAccount = "<%=OperateUser.getUserAccount()%>";//用户账号
+	var strUserName = "<%=OperateUser.getUserName()%>";//用户名
 </script>
 </head>
 <body class="easyui-layout">

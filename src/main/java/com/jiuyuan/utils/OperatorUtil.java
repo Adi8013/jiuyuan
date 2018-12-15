@@ -1,8 +1,5 @@
 package com.jiuyuan.utils;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.jiuyuan.sys.context.SessionContextHelper;
