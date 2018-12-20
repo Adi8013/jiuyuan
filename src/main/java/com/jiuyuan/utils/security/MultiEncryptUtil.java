@@ -1,10 +1,6 @@
 package com.jiuyuan.utils.security;
 
-import java.security.Key;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.spec.KeySpec;
-import java.util.UUID;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -13,8 +9,10 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
+import java.security.Key;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.spec.KeySpec;
 
 
 /**
@@ -30,7 +28,7 @@ public class MultiEncryptUtil {
      * @return 加密结果，返回加密后的字节数组
      * @throws Exception
      * */
-    public static byte[] encrypt(byte[] plainText, byte[] encrytKey,EncryptAlgorithm alg) throws Exception{
+    public static byte[] encrypt(byte[] plainText, byte[] encrytKey, EncryptAlgorithm alg) throws Exception{
     	Key k = toKey(encrytKey,alg);
     	return encrypt(plainText,k,alg);
     }
@@ -43,7 +41,7 @@ public class MultiEncryptUtil {
      * @return 加密结果，返回加密后的字节数组
      * @throws Exception
      * */
-    public static byte[] encrypt(byte[] plainText, Key key,EncryptAlgorithm alg) throws Exception{
+    public static byte[] encrypt(byte[] plainText, Key key, EncryptAlgorithm alg) throws Exception{
         Cipher cipher = Cipher.getInstance(alg.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, key);
         return cipher.doFinal(plainText);
@@ -56,7 +54,7 @@ public class MultiEncryptUtil {
      * @return 解密结果，返回解密后的字节数组
      * @throws Exception
      * */
-    public static byte[] decrypt(byte[] ciperText, byte[] decrytKey,EncryptAlgorithm alg) throws Exception{
+    public static byte[] decrypt(byte[] ciperText, byte[] decrytKey, EncryptAlgorithm alg) throws Exception{
         Key k = toKey(decrytKey,alg);
         return decrypt(ciperText,k,alg);
     }
@@ -68,7 +66,7 @@ public class MultiEncryptUtil {
      * @return 解密结果，返回解密后的字节数组
      * @throws Exception
      * */
-    public static byte[] decrypt(byte[] ciperText, Key key,EncryptAlgorithm alg) throws Exception{
+    public static byte[] decrypt(byte[] ciperText, Key key, EncryptAlgorithm alg) throws Exception{
         Cipher cipher = Cipher.getInstance(alg.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, key);
         return cipher.doFinal(ciperText);
@@ -116,7 +114,7 @@ public class MultiEncryptUtil {
             }
             else{
                 desKey = new DESedeKeySpec(key);
-                keyFactory = SecretKeyFactory.getInstance(EncryptAlgorithm.ThreeDES.getAlgorithm());  
+                keyFactory = SecretKeyFactory.getInstance(EncryptAlgorithm.ThreeDES.getAlgorithm());
             }// 将DESKeySpec对象转换成SecretKey对象  
             SecretKey securekey = keyFactory.generateSecret(desKey);  
             return securekey;
@@ -125,13 +123,13 @@ public class MultiEncryptUtil {
         return spec;
     }
     
-    public static String testSymmEncry(String plainText,byte[] key,EncryptAlgorithm alg) throws Exception{
+    public static String testSymmEncry(String plainText, byte[] key, EncryptAlgorithm alg) throws Exception{
         /*测试对称加密方法的应用场景类*/
         byte[] encResult = encrypt(EncryptStringUtils.getEncByteFromStr(plainText),key,alg);
         String encStr = EncryptStringUtils.byte2hex(encResult);
         return encStr;
     }
-    public static String testAsymmEncry(String plainText,Key key,EncryptAlgorithm alg) throws Exception{
+    public static String testAsymmEncry(String plainText, Key key, EncryptAlgorithm alg) throws Exception{
         /*测试非对称加密方法的应用场景类*/
 //        byte[] encResult = encryt(EncryptStringUtils.getEncByteFromStr(plainText),key,alg);
         byte[] encResult = encrypt(plainText.getBytes(),key,alg);
@@ -140,14 +138,14 @@ public class MultiEncryptUtil {
     }
     
     
-    public static String testSymmDecry(String ciperText, byte[] key,EncryptAlgorithm alg) throws Exception{
+    public static String testSymmDecry(String ciperText, byte[] key, EncryptAlgorithm alg) throws Exception{
         /*测试解密方法的应用场景类*/
         byte[] decResult = decrypt(EncryptStringUtils.getDecByteFromStr(ciperText),key,alg);
         String decStr = new String(decResult);
         return decStr;
     }
     
-    public static String testAsymmDecry(String ciperText, Key key,EncryptAlgorithm alg) throws Exception{
+    public static String testAsymmDecry(String ciperText, Key key, EncryptAlgorithm alg) throws Exception{
         /*测试非对称解密方法的应用场景类*/
         byte[] decResult = decrypt(EncryptStringUtils.getDecByteFromStr(ciperText),key,alg);
         String decStr = new String(decResult);
@@ -164,7 +162,7 @@ public class MultiEncryptUtil {
      */
     public static String loginEncrypt(String plainText){
     	try{
-    		byte[] encResult = encrypt(EncryptStringUtils.getEncByteFromStr(plainText),loginKey,EncryptAlgorithm.AES);
+    		byte[] encResult = encrypt(EncryptStringUtils.getEncByteFromStr(plainText),loginKey, EncryptAlgorithm.AES);
         	return new Base64().encodeToString(encResult);
     	}catch (Exception e) {
 			throw new RuntimeException(e);
@@ -179,7 +177,7 @@ public class MultiEncryptUtil {
      */
     public static String loginDecrypt(String plainText){
     	try{
-    		byte[] decResult = decrypt(new Base64().decode(plainText),loginKey,EncryptAlgorithm.AES);
+    		byte[] decResult = decrypt(new Base64().decode(plainText),loginKey, EncryptAlgorithm.AES);
             return new String(decResult);
     	}catch (Exception e) {
 			throw new RuntimeException(e);
@@ -216,10 +214,10 @@ public class MultiEncryptUtil {
             
             System.out.println("开始使用RSA加密....");
             KeyPair kp = getDefaultKeyPair(EncryptAlgorithm.RSA);
-            String rsaEncStr = testAsymmEncry(plainText,kp.getPublic(),EncryptAlgorithm.RSAWithPadding);
+            String rsaEncStr = testAsymmEncry(plainText,kp.getPublic(), EncryptAlgorithm.RSAWithPadding);
             System.out.println("RSA加密之后:"+rsaEncStr);
             //使用RSA解密
-            String desDecStr = testAsymmDecry(rsaEncStr,kp.getPrivate(),EncryptAlgorithm.RSAWithPadding);
+            String desDecStr = testAsymmDecry(rsaEncStr,kp.getPrivate(), EncryptAlgorithm.RSAWithPadding);
             System.out.println("RSA解密之后:"+desDecStr);
             
         } catch (Exception e) {

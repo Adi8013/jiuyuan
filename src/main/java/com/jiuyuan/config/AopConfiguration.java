@@ -1,15 +1,14 @@
 package com.jiuyuan.config;
 
-import java.lang.reflect.Method;
-
+import com.jiuyuan.utils.OperatorUtil;
+import com.jiuyuan.utils.UUIDUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.jiuyuan.utils.OperatorUtil;
-import com.jiuyuan.utils.UUIDUtil;
+import java.lang.reflect.Method;
 
 @Aspect //描述一个切面类，定义切面类的时候需要打上这个注解
 @Component

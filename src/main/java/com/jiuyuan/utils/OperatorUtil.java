@@ -1,9 +1,9 @@
 package com.jiuyuan.utils;
 
-import javax.servlet.http.HttpSession;
-
 import com.jiuyuan.sys.context.SessionContextHelper;
 import com.jiuyuan.sys.user.domain.User;
+
+import javax.servlet.http.HttpSession;
 
 public class OperatorUtil {
 	/**

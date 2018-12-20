@@ -1,11 +1,10 @@
 package com.jiuyuan.module.sale.mapper;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.jiuyuan.module.sale.domain.SaleDetail;
 import org.springframework.stereotype.Repository;
 
-import com.jiuyuan.module.sale.domain.SaleDetail;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public interface SaleDetailMapper {

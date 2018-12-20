@@ -1,10 +1,9 @@
 package com.jiuyuan.sys.user.mapper;
 
-import java.util.List;
-
+import com.jiuyuan.sys.user.domain.User;
 import org.springframework.stereotype.Repository;
 
-import com.jiuyuan.sys.user.domain.User;
+import java.util.List;
 
 @Repository
 public interface UserMapper {

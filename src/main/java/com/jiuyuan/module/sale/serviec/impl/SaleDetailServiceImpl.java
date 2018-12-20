@@ -1,13 +1,12 @@
 package com.jiuyuan.module.sale.serviec.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.jiuyuan.module.sale.domain.SaleDetail;
 import com.jiuyuan.module.sale.mapper.SaleDetailMapper;
 import com.jiuyuan.module.sale.serviec.SaleDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SaleDetailServiceImpl implements SaleDetailService {

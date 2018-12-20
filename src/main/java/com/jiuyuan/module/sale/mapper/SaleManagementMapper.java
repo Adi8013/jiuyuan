@@ -1,10 +1,9 @@
 package com.jiuyuan.module.sale.mapper;
 
-import java.util.List;
-
+import com.jiuyuan.module.sale.domain.SaleManagement;
 import org.springframework.stereotype.Repository;
 
-import com.jiuyuan.module.sale.domain.SaleManagement;
+import java.util.List;
 
 @Repository
 public interface SaleManagementMapper {

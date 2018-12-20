@@ -1,10 +1,9 @@
 package com.jiuyuan.module.sale.serviec;
 
-import java.util.List;
-
+import com.jiuyuan.module.sale.domain.SaleManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jiuyuan.module.sale.domain.SaleManagement;
+import java.util.List;
 
 @Transactional()
 public interface SaleManagementService {

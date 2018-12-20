@@ -1,10 +1,9 @@
 package com.jiuyuan.sys.user.service;
 
-import java.util.List;
-
+import com.jiuyuan.sys.user.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jiuyuan.sys.user.domain.User;
+import java.util.List;
 
 @Transactional()
 public interface UserService {

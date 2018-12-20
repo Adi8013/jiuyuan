@@ -1,9 +1,8 @@
 package com.jiuyuan.sys.user.domain;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 public class User implements Serializable{
 	private String pk;

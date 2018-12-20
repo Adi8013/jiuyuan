@@ -34,6 +34,18 @@
 	cursor:pointer;
 }
 .detail {
+	height: 25px;
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.tddetail {
+	width: 131px;
+	height: 26px;
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
 }
 </style>
 </head>
@@ -77,7 +89,7 @@
 					<hr class="editline" />
 				</div>
 				<div class="biao">
-					<table id="tableList" cellspacing="0" cellpadding="0">
+					<table id="tableList" cellspacing="0" cellpadding="0" >
 						<tr>
 							<td width="27px"></td>
 							<td>产品名称</td>
@@ -89,13 +101,13 @@
 							<td style="border-right: 1px solid black;">备注</td>
 						</tr>
 						<tr>
-							<td colspan="5">合计</td>
+							<td colspan="5" >合计</td>
 							<td></td>
-							<td></td>
+							<td id="sumPrice"></td>
 							<td id="operator" style="text-align: left; border-right: 1px solid black;" ></td><!-- 制单员 -->
 						</tr>
 						<tr>
-							<td colspan="7" style="text-align: left; border-bottom: 1px solid black;">大写人民币：</td><!-- 大写人民币： -->
+							<td colspan="7" style="text-align: left; border-bottom: 1px solid black;" >大写人民币： <span id="CN"></span></td><!-- 大写人民币： -->
 							<td style="text-align: left; border-bottom: 1px solid black; border-right: 1px solid black;">客户签收：</td>
 						</tr>
 					</table>
@@ -118,7 +130,7 @@
 		</div>
 	</div>
 	<div class="Editinput">
-			<input type="button" id="save" class="bt_ensure" value="保存"></input>
+			<input type="button" id="bt_save" class="bt_ensure" value="保存"></input>
 			<input id="return" type="button" class="bt_cancel" value="返回"></input>
 		</div>
 </body>

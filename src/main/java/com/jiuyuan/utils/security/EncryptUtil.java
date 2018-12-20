@@ -1,16 +1,15 @@
 package com.jiuyuan.utils.security;
 
-import java.io.IOException;  
-import java.io.UnsupportedEncodingException;  
-import java.security.MessageDigest;  
-  
-import javax.crypto.Cipher;  
-import javax.crypto.spec.IvParameterSpec;  
-import javax.crypto.spec.SecretKeySpec;  
-  
-import sun.misc.BASE64Decoder;  
-import sun.misc.BASE64Encoder;  
-  
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+
 /** 
  * 功能描述 
  * 加密常用类 
@@ -39,24 +38,24 @@ public class EncryptUtil {
         // 取MD5Hash码，并组合加密数组  
         byte[] md5Hasn = null;  
         try {  
-            md5Hasn = EncryptUtil.MD5Hash(encrypt, 0, encrypt.length);  
+            md5Hasn = EncryptUtil.MD5Hash(encrypt, 0, encrypt.length);
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
         // 组合消息体  
-        byte[] totalByte = EncryptUtil.addMD5(md5Hasn, encrypt);  
+        byte[] totalByte = EncryptUtil.addMD5(md5Hasn, encrypt);
   
         // 取密钥和偏转向量  
         byte[] key = new byte[8];  
         byte[] iv = new byte[8];  
-        getKeyIV(EncryptUtil.key, key, iv);  
+        getKeyIV(EncryptUtil.key, key, iv);
         SecretKeySpec deskey = new SecretKeySpec(key, "DES");  
         IvParameterSpec ivParam = new IvParameterSpec(iv);  
   
         // 使用DES算法使用加密消息体  
         byte[] temp = null;  
         try {  
-            temp = EncryptUtil.DES_CBC_Encrypt(totalByte, deskey, ivParam);  
+            temp = EncryptUtil.DES_CBC_Encrypt(totalByte, deskey, ivParam);
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
@@ -94,7 +93,7 @@ public class EncryptUtil {
         // 取密钥和偏转向量  
         byte[] key = new byte[8];  
         byte[] iv = new byte[8];  
-        getKeyIV(EncryptUtil.key, key, iv);  
+        getKeyIV(EncryptUtil.key, key, iv);
   
         SecretKeySpec deskey = new SecretKeySpec(key, "DES");  
         IvParameterSpec ivParam = new IvParameterSpec(iv);  
@@ -102,7 +101,7 @@ public class EncryptUtil {
         // 使用DES算法解密  
         byte[] temp = null;  
         try {  
-            temp = EncryptUtil.DES_CBC_Decrypt(encBuf, deskey, ivParam);  
+            temp = EncryptUtil.DES_CBC_Decrypt(encBuf, deskey, ivParam);
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
@@ -110,7 +109,7 @@ public class EncryptUtil {
         // 进行解密后的md5Hash校验  
         byte[] md5Hash = null;  
         try {  
-            md5Hash = EncryptUtil.MD5Hash(temp, 16, temp.length - 16);  
+            md5Hash = EncryptUtil.MD5Hash(temp, 16, temp.length - 16);
         } catch (Exception e) {  
             e.printStackTrace();  
         }  

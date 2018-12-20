@@ -1,12 +1,11 @@
 package com.jiuyuan.sys.user.controller;
 
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.jiuyuan.sys.common.ResponseMsg;
+import com.jiuyuan.sys.user.domain.User;
+import com.jiuyuan.sys.user.service.UserService;
+import com.jiuyuan.utils.CaptchaUtil;
+import com.jiuyuan.utils.SystemConstant;
+import com.jiuyuan.utils.security.EncryptUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.jiuyuan.sys.common.ResponseMsg;
-import com.jiuyuan.sys.user.domain.User;
-import com.jiuyuan.sys.user.service.UserService;
-import com.jiuyuan.utils.CaptchaUtil;
-import com.jiuyuan.utils.SystemConstant;
-import com.jiuyuan.utils.security.EncryptUtil;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 
 
 @Controller
 public class LoginController {
-	private static final Logger LOGGER = LogManager.getLogger(LoginController.class); 
+	private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -61,7 +59,7 @@ public class LoginController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/defaultCaptcha")
-	public void defaultCaptcha(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public void defaultCaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		response.setContentType("image/jpeg");
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
@@ -81,10 +79,10 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value="/doCheckLogin",method=RequestMethod.POST)
+	@RequestMapping(value="/doCheckLogin",method= RequestMethod.POST)
 	@ResponseBody
 	public ResponseMsg doCheckLogin(@RequestParam(name="userAccount") String userAccount, @RequestParam(name="password") String password,
-									@RequestParam(name="captcha") String captcha, HttpServletRequest request) {
+                                    @RequestParam(name="captcha") String captcha, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (!session.getAttribute(SystemConstant.KEY_CAPTCHA).equals(captcha.trim())) {
 			return ResponseMsg.failed("验证码错误");

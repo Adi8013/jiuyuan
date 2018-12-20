@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="${path}/js/pagerFilter.js"></script>
 <script type="text/javascript" src="${path}/layer/layer.js"></script>
 <script type="text/javascript" src="${path}/tools/date.js"></script>
+<script type="text/javascript" src="${path}/tools/numToCN.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${path}/css/defaultstyle.css" />
 <!--  

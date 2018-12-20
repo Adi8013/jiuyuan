@@ -90,7 +90,7 @@ public class ResponseMsg {
      * @param value message
      * @return
      */
-    public ResponseMsg push(String key,Object value){
+    public ResponseMsg push(String key, Object value){
         this.getResult().put(key, value);
         return this;
     }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<table style="border-collapse:separate; border-spacing:0px 10px;">
+    <tr>
+        <td align="right">应收现金：</td>
+        <td><input id="accountReceivable" autoComplete='off'></td>
+        <td>元，折扣：</td>
+        <td><input id="vipdiscount"  ></td>
+        <td align="right">实收：</td>
+        <td><input id="receipts" readonly="true"></td>
+        <td>元 </td>
+        <td>消费类型：<select id="conType"><option value="1" >报名费</option><option value="2" >酒水零食费</option></select></td>
+        <td><a id="btnSend" class="easyui-linkbutton">提交</a></td>
+
+    </tr>
+</table>
+
+
+
+
+<input  type="text" id="achievementScore" class="tab_bor2" name="scoreCheck.achievementScore"
+        onblur="check(this)"  onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" />
+<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+    function check(e) {
+        var re = /^\d+(?=\.{0,1}\d+$|$)/
+        if (e.value != "") {
+            if (!re.test(e.value)) {
+                alert("请输入正确的数字");
+                e.value = "";
+                e.focus();
+            }
+        }
+    }
+    $(function(){
+        var s = "12.";
+        var a = "12";
+        console.log(s.lastIndexOf("."))
+        console.log(a.lastIndexOf("."))
+        $('#accountReceivable').bind('input propertychange', function() {
+            var a = $('#accountReceivable').val();
+            alert(a)
+            var b = $('#vipdiscount').val();
+            var sum= a * b;
+
+            $('#receipts').val(sum);
+        });
+
+    })
+</script>
+
+</body>
+</html>

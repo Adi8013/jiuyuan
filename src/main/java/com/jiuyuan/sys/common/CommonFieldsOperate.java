@@ -1,10 +1,7 @@
 package com.jiuyuan.sys.common;
 
-import java.lang.reflect.Method;
-
-import org.aspectj.lang.ProceedingJoinPoint;
-
 import com.jiuyuan.utils.OperatorUtil;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
  * 通用设置
