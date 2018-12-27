@@ -32,8 +32,16 @@
     delete from tsaledetail
     where pk = #{pk,jdbcType=VARCHAR}
   </delete>
+
+  <delete id="deleteBySalePks" parameterType="java.lang.String">
+    delete from tsaledetail
+    where salePk in
+    <foreach item="pks" collection="array" open="(" separator="," close=")">
+      #{pks}
+    </foreach>
+  </delete>
   
-  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleDetail">
+  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleDetail" useGeneratedKeys="true" keyProperty="pk">
     insert into tsaledetail (pk, SalePk, SaleNo, 
       ProductName, Size, Unit, 
       Quantity, PerPrice, Remark, 

@@ -24,7 +24,7 @@ function delTr(ckb) {
         // 重新计算合计
         var newSumPrice =  $("#sumPrice").text() - $tr.find('input[name="totalPrice"]').eq(0).val();
         console.log("newSumPrice" + newSumPrice);
-        $("#sumPrice").text(newSumPrice);
+        $("#sumPrice").text(newSumPrice.toFixed(2));
         $("#CN").text(numToCN(newSumPrice));
         $tr.remove();
     });
@@ -52,7 +52,7 @@ function detailNumToName(num) {
  */
 function getData() {
     var k;
-    var dataJson = {};
+
     var array = [];
     var inputVal;
     var $dataRows = $('#tableList tr[attr="detail"]');
@@ -62,8 +62,17 @@ function getData() {
         });
         return false;
     }
+    var receiver = $("#id_receiver").val();
+    var address = $("#id_address").val();
+
+    if (isEmpty(receiver) || isEmpty(address)) {
+        top.layer.alert('收货单位或地址不能为空', {
+            icon: 2
+        });
+        return false;
+    }
     var result = "";
-    $($dataRows).each(function (index) {
+    $dataRows.each(function (index) {
         var st = [];
         var chil = $(this).children('td');
         var tdCount = chil.length;
@@ -76,6 +85,7 @@ function getData() {
             }
             st.push(inputVal);
         }
+        var dataJson = {};
         /*dataJson = {
             'productName': st[0],
             'size': st[1],
@@ -89,9 +99,9 @@ function getData() {
         dataJson.unit = st[2];
         dataJson.perPrice = st[3];
         dataJson.quantity = st[4];
-        dataJson.quantity = st[6];
-        dataJson.receiver = $("#id_receiver").val();
-        dataJson.address = $("#id_address").val();
+        dataJson.remark = st[6];
+        dataJson.receiver = receiver;
+        dataJson.address = address;
         array.push(dataJson);
     });
     if ( result != "") {
@@ -180,11 +190,13 @@ $(function () {
 
     // 保存
     $("#bt_save").click(function () {
-        var details = getData();
-        console.log(details);
-        if (!details) {
+        var detail = getData();
+        if (!detail) {
             return;
         }
+        // console.log(JSON.stringify(detail));
+        var pratent_index = parent.layer.getFrameIndex(window.name); //获取父窗口索引
+        // console.log(pratent_index)
         top.layer.open({
             title: "信息",
             icon: 3,
@@ -194,10 +206,34 @@ $(function () {
             shift: 1,
             closeBtn: 0,
             yes: function (index) {
-                // 获取销售单明细
+                // console.log(index)
+                top.layer.close(index);
+                $("body").addLoading({
+                    msg: "正在保存销售单，请稍后...."
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: "/sale/addSale",
+                    data: JSON.stringify(detail),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        $("body").removeLoading();
+                        parent.layer.close(pratent_index);
+                        if (data.status == 200) {
+                            top.layer.alert(data.msg,{
+                                icon:1,
+                                closeBtn:0
+                            });
+                        } else {
+                            top.layer.alert(data.msg,{
+                                icon:5,
+                                closeBtn:0
+                            });
+                        }
 
-
-
+                    }
+                });
             },
             cancel: function (index) {
 

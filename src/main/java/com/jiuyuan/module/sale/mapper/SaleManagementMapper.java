@@ -20,4 +20,6 @@ public interface SaleManagementMapper {
     int updateByPrimaryKey(SaleManagement record);
     
     List<SaleManagement> findAll();
+
+    int deleteByPks(String[] pks);
 }

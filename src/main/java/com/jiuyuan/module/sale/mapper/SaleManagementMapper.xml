@@ -30,8 +30,15 @@
     delete from tsalemanagement
     where pk = #{pk,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleManagement">
-    insert into tsalemanagement (pk, SaleNo, Operator, 
+  <delete id="deleteByPks" parameterType="java.lang.String">
+    delete from tsalemanagement
+    where pk in
+    <foreach item="pks" collection="array" open="(" separator="," close=")">
+      #{pks}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleManagement" useGeneratedKeys="true" keyProperty="pk">
+    insert into tsalemanagement (pk, SaleNo, Operator,
       Receiver, Address, Remark, 
       InsertTime, LastestUpdate, UpdatePerson
       )
@@ -143,4 +150,5 @@
       UpdatePerson = #{updatePerson,jdbcType=VARCHAR}
     where pk = #{pk,jdbcType=VARCHAR}
   </update>
+
 </mapper>

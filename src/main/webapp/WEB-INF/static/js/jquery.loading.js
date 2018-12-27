@@ -52,7 +52,7 @@
                 z: 9999,      //蒙版叠放层级
                 msg:'数据加载中...',  
                 iconType: 1,
-                iconUrl: contextPath+"/core/js/layer/skin/default/",
+                iconUrl: contextPath+"/layer/skin/default/",
                 top:h/2-25, //提示框距离蒙版顶部距离
                 br:true,    //文字与图标是否换行显示
                 maskColor:'#AAAAAA',    //蒙版颜色

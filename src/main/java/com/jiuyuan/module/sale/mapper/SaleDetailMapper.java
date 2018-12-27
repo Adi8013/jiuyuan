@@ -21,5 +21,7 @@ public interface SaleDetailMapper {
     int deleteByPrimaryKey(String pk);
 
 	BigDecimal querySumPriceBySaleNo(String saleNo);
+
+	int deleteBySalePks(String[] salePks);
     
 }

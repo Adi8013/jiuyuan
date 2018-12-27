@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyuan.module.common.mapper.CommonMapper">
+
+  <select id="seleceMaxBussCode" parameterType="java.util.Map" resultType="java.lang.String">
+  	SELECT MAX(${columnName}) FROM ${tableName}  WHERE ${columnName} LIKE #{condition};
+  </select>
+  
+
+
+  
+</mapper>

@@ -27,6 +27,11 @@ public class SaleDetail {
 
     private String updatePerson;
 
+    // 额外属性
+    private String receiver;
+
+    private String address;
+
     public String getPk() {
         return pk;
     }
@@ -121,5 +126,21 @@ public class SaleDetail {
 
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
