@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SaleManagementServiceImpl implements SaleManagementService {
@@ -23,6 +24,11 @@ public class SaleManagementServiceImpl implements SaleManagementService {
 	@Override
 	public List<SaleManagement> findAll() {
 		return saleManagementService.findAll();
+	}
+
+	@Override
+	public List<SaleManagement> findByCondition(Map<String, String> param) {
+		return saleManagementService.findByCondition(param);
 	}
 
 	@Override

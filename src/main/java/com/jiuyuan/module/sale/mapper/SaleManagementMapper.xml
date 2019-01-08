@@ -18,8 +18,22 @@
   </sql>
   <!-- 查询所有 -->
   <select id="findAll" resultMap="BaseResultMap">
-  	 select <include refid="Base_Column_List" /> from tsalemanagement
+  	 select <include refid="Base_Column_List" /> from tsalemanagement order by SaleNo desc
   </select>
+  <!-- 条件查询 -->
+  <select id="findByCondition" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	 select <include refid="Base_Column_List" /> from tsalemanagement
+  	 <where>
+       <if test="startTime != null and startTime != ''">
+         InsertTime between #{startTime} and #{endTime}
+       </if>
+       <if test="receiver != null and receiver != ''">
+         and Receiver like CONCAT('%',#{receiver},'%')
+       </if>
+     </where>
+  	 order by SaleNo desc
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

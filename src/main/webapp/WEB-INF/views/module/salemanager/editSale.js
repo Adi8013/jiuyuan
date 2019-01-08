@@ -5,6 +5,10 @@ var topIndex = top.layer.index;
 function init() {
     // 自动填充制单员（为当前系统默认登录人）
     $("#operator").text("制单员： " + top.strUserName);
+    // 销售单修改初始化
+  /*  console.log(salesize);
+    console.log(saleDetails);
+    console.log(sale);*/
 }
 
 function delTr(ckb) {
@@ -52,7 +56,8 @@ function detailNumToName(num) {
  */
 function getData() {
     var k;
-
+    var salePK = $('#salePK').val();
+    // console.log("*********" + salePK);
     var array = [];
     var inputVal;
     var $dataRows = $('#tableList tr[attr="detail"]');
@@ -94,6 +99,10 @@ function getData() {
             'quantity': st[4],
             'remark': st[6]
         };*/
+        if (!isEmpty(salePK)) {
+            dataJson.salePk = salePK;
+            dataJson.saleNo = $('#saleNo').text();
+        }
         dataJson.productName = st[0];
         dataJson.size = st[1];
         dataJson.unit = st[2];

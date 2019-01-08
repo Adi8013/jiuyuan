@@ -17,23 +17,16 @@
 		<!-- Begin of toolbar -->
 		<div id="dee-toolbar-2">
 			<div class="dee-toolbar-button">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAdd()" plain="true">添加</a>
-				<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()" plain="true">修改</a>
-				<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="remove()" plain="true">删除</a> 
-				<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
+				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" onclick="openAdd()" plain="true">添加</a>
+				<%--<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()" plain="true">修改</a>--%>
+				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" onclick="remove()" plain="true">删除</a>
+				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
 			</div>
 			<div class="dee-toolbar-search">
-				<label>起始时间：</label><input class="easyui-datebox"
-					style="width: 100px"> <label>结束时间：</label><input
-					class="easyui-datebox" style="width: 100px"> <label>用户组：</label>
-				<select class="easyui-combobox" panelHeight="auto"
-					style="width: 100px">
-					<option value="0">选择用户组</option>
-					<option value="1">黄钻</option>
-					<option value="2">红钻</option>
-					<option value="3">蓝钻</option>
-				</select> <label>关键词：</label><input class="dee-text" style="width: 100px">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+				<label>起始时间：</label><input id="start_time" class="easyui-datebox" style="width: 100px">
+				<label>结束时间：</label><input id="end_time" class="easyui-datebox" style="width: 100px">
+				<label>收货单位：</label><input id="id_receive" class="dee-text" style="width: 100px">
+				<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">开始检索</a>
 			</div>
 		</div>
 		<!-- End of toolbar -->

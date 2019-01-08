@@ -6,7 +6,7 @@ $(function () {
         singleSelect: false,
         pageSize: 20,
         pagination: true,
-        multiSort: true,
+        multiSort: false,
         fitColumns: true,
         fit: true,
         columns: [[
@@ -15,14 +15,14 @@ $(function () {
                 field: 'option', title: '操作', minwidth: 180, formatter: function (value, row, index) {
                     var oper_container = '';
                     if (row.operator == top.strUserAccount) {
-                        oper_container += "<a href='javascript:void(0);' class='modifyFunc' params=\"[" + row.pk + "]\" >修改</a>  ";
+                        oper_container += "<a href='javascript:void(0);' class='modifyFunc' onclick='modify(\"" + row.pk + "\")' params=\"[" + row.pk + "]\" >修改</a>  ";
                         oper_container += "<a href='javascript:void(0);' onclick='remove(\"" + row.pk + "\")' class='deleteFunc' params=\"[" + row.pk + "]\" >删除</a>  ";
                     }
                     oper_container += "<a href='javascript:void(0);' onclick='view(\"" + row.pk + "\")' >查看</a>  ";
                     return oper_container;
                 }
             },
-            {field: 'saleNo', title: '销售单号', width: 60},
+            {field: 'saleNo', title: '销售单号', width: 60 },
             {field: 'operator', title: '制单人', width: 40},
             {field: 'receiver', title: '收货单位', width: 100},
             {field: 'address', title: '地址', width: 200},
@@ -33,6 +33,36 @@ $(function () {
     });
 });
 
+/**
+ *
+ */
+function searchBy() {
+    var startTime = $('#start_time').datebox('getValue');
+    var endTime = $('#end_time').datebox('getValue');
+    var receiver = $('#id_receive').val();
+    if (startTime > endTime) {
+        top.layer.alert("起始日期（"+ startTime +"）不能大于结束日期（"+ endTime +"）",{
+            icon:5,
+            closeBtn:0
+        });
+        return;
+    }
+    var condition = {};
+    condition.startTime = startTime;
+    condition.endTime = endTime;
+    condition.receiver = receiver;
+    // console.log(JSON.stringify(condition));
+    $.ajax({
+        type: 'POST',
+        url: "/sale/search",
+        data: JSON.stringify(condition),
+        contentType: "application/json",
+        dataType: "json",
+        success: function (data) {
+            $('#dee-datagrid-2').datagrid('loadData',data);
+        }
+    });
+}
 /**
  * Name 查看销售单
  */
@@ -78,46 +108,24 @@ function openAdd() {
     });
 }
 
-
 /**
- * Name 添加记录
+ * Name 打开添加页面
  */
-function add() {
-    $('#dee-form-2').form('submit', {
-        url: '/user/addone',
-        onSubmit: function () {
-            var isValid = $(this).form('validate');
-            if (!isValid) {
-                //$.messager.alert('操作提示', '请按要求填写内容', 'warnning');
-                top.layer.open({
-                    title: "信息",
-                    content: "请按要求填写内容",
-                    icon: 2,
-                    closeBtn: 2,
-                    btn: ["确定", "取消"],
-                    yes: function (windows) {
-                        //deleteDetalistAll();
-                        top.layer.close(windows);
-                        reload();
-                    },
-                    cancel: function (windows) {
-                        top.layer.close(windows);
-                        reload();
-                    }
-                });
-            }
-            return isValid; // 返回false终止表单提交
+function modify(pk) {
+    top.layer.open({
+        type: 2,
+        title: "修改销售单",
+        shift: 1,
+        closeBtn: 2,
+        area: ["1100px", "700px"],
+        shade: false,
+        zIndex: '2018',
+        success: function (layero) {
+            top.layer.setTop(layero);
         },
-        success: function (data) {
-            var data = eval('(' + data + ')'); // change the JSON string to javascript object
-            if (data.msg == "success") {
-                $.messager.alert('操作提示', '添加用户成功！', 'info');
-                $('#dee-dialog-2').dialog('close');
-                reload();
-            } else {
-                $.messager.alert('操作提示', data.msg, 'error');
-                reload();
-            }
+        content: "/sale/editSale?method=modify&salePk=" + pk,
+        end: function () {
+            reload();
         }
     });
 }

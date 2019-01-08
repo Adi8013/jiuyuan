@@ -4,6 +4,7 @@ import com.jiuyuan.module.sale.domain.SaleManagement;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface SaleManagementMapper {
@@ -22,4 +23,6 @@ public interface SaleManagementMapper {
     List<SaleManagement> findAll();
 
     int deleteByPks(String[] pks);
+
+    List<SaleManagement> findByCondition(Map<String, String> param);
 }
