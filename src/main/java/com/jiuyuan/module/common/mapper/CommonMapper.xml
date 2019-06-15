@@ -5,7 +5,6 @@
   <select id="seleceMaxBussCode" parameterType="java.util.Map" resultType="java.lang.String">
   	SELECT MAX(${columnName}) FROM ${tableName}  WHERE ${columnName} LIKE #{condition};
   </select>
-  
 
 
   

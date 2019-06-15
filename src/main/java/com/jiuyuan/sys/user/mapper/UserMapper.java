@@ -27,5 +27,7 @@ public interface UserMapper {
     User loginUser(String userAccount);
     
     List<User> findAll();
+
+    List<User> findUserByUNlike(String userName);
     
 }

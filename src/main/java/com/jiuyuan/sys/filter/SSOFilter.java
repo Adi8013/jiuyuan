@@ -42,7 +42,7 @@ public class SSOFilter implements Filter {
 				httpResponse.sendRedirect(httpRequest.getContextPath()+"/login");
 				return;
 			}
-		} 
+		}
 		chain.doFilter(request, response);
 	}
 

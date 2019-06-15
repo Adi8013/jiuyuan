@@ -26,4 +26,6 @@ public interface UserService {
 	int updateByPrimaryKeySelective_tran(User record);
 
 	int updateByPrimaryKey_tran(User record);
+
+	List<User> findUserByUNlike(String userName);
 }

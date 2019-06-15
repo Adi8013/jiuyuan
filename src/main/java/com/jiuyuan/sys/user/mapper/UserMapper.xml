@@ -31,6 +31,13 @@
   <select id="findAll" resultMap="BaseResultMap">
   	 select <include refid="Base_Column_List" /> from tuser
   </select>
+  <!-- 根据用户名模糊查询 -->
+  <select id="findUserByUNlike" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	 select <include refid="Base_Column_List" /> from tuser
+  	 <where>
+         userName like CONCAT('%',#{userName},'%')
+     </where>
+  </select>
   <!-- 根据用户名登录 -->
   <select id="loginUser" parameterType="java.lang.String" resultMap="BaseResultMap">
   	 select 

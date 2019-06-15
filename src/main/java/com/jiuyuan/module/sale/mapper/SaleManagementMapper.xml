@@ -53,11 +53,11 @@
   </delete>
   <insert id="insert" parameterType="com.jiuyuan.module.sale.domain.SaleManagement" useGeneratedKeys="true" keyProperty="pk">
     insert into tsalemanagement (pk, SaleNo, Operator,
-      Receiver, Address, Remark, 
+      Receiver, Address, CreateDate, Remark,
       InsertTime, LastestUpdate, UpdatePerson
       )
     values (#{pk,jdbcType=VARCHAR}, #{saleNo,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
-      #{receiver,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{receiver,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
       #{insertTime,jdbcType=VARCHAR}, #{lastestUpdate,jdbcType=VARCHAR}, #{updatePerson,jdbcType=VARCHAR}
       )
   </insert>

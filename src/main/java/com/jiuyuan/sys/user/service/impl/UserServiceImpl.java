@@ -60,4 +60,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateByPrimaryKey(user);
 	}
 
+	@Override
+	public List<User> findUserByUNlike(String userName) {
+		return userMapper.findUserByUNlike(userName);
+	}
+
 }

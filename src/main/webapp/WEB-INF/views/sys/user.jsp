@@ -20,17 +20,18 @@
 				<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
 			</div>
 			<div class="dee-toolbar-search">
-				<label>起始时间：</label><input class="easyui-datebox"
+				<%--<label>起始时间：</label><input class="easyui-datebox"
 					style="width: 100px"> <label>结束时间：</label><input
-					class="easyui-datebox" style="width: 100px"> <label>用户组：</label>
+					class="easyui-datebox" style="width: 100px">
+				<label>用户组：</label>
 				<select class="easyui-combobox" panelHeight="auto"
 					style="width: 100px">
 					<option value="0">选择用户组</option>
 					<option value="1">黄钻</option>
 					<option value="2">红钻</option>
-					<option value="3">蓝钻</option>
-				</select> <label>关键词：</label><input class="dee-text" style="width: 100px">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+					<option value="3">蓝钻</option>--%>
+				</select> <label>姓名：</label><input id="search_username" class="dee-text" style="width: 100px">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="searchUser()">开始检索</a>
 			</div>
 		</div>
 		<!-- End of toolbar -->
@@ -45,16 +46,16 @@
 			<table>
 				<tr>
 					<td width="60" height="10" align="right">帐 号:</td>
-					<td><input type="text" id="userAccount" name="userAccount" class="dee-text easyui-validatebox" data-options="validType:['unique','englishOrNum'],required:true" /></td>
+					<td><input type="text" id="userAccount" name="userAccount" class="dee-text easyui-validatebox" data-options="validType:['unique','englishOrNum','required']" /></td>
 					<td><input type="hidden" id="pk" name="pk"/></td>
 				</tr>
 				<tr>
 					<td align="right">姓 名:</td>
-					<td><input type="text" id="userName" name="userName" class="dee-text easyui-validatebox" data-options="required:true"/></td>
+					<td><input type="text" id="userName" name="userName" class="dee-text easyui-validatebox" data-options="validType:'required'"/></td>
 				</tr>
 				<tr>
 					<td align="right">密 码:</td>
-					<td><input type="password" id="password" name="password" class="dee-text easyui-validatebox" data-options="required:true"/></td>
+					<td><input type="password" id="password" name="password" class="dee-text easyui-validatebox" data-options="validType:'required'"/></td>
 				</tr>
 				<tr>
 					<td align="right">电 话:</td>

@@ -42,12 +42,20 @@
 					<hr class="editline" />
 				</div>
 				<table cellspacing="1" cellpadding="0" style="border-spacing: 8px;">
+					<%--<tr ><td style="position: fixed; margin-left: 870px; margin-top: -78px;"><button onclick="exportExcel();">导出Excel</button></td></tr>--%>
+					<tr >
+						<td style="position: fixed; margin-left: 870px; margin-top: -78px;">
+							<a href="/sale/exportExcel/${sale.pk}/${sale.saleNo}" download="jiuyuan-${sale.saleNo}">导出Excel</a>
+						</td>
+					</tr>
 					<tr>
 						<td class="View-Title1">收货单位：</td>
 						<td class="View-value1"><span>${sale.receiver}</span></td>
 						<td class="View-Title1">No.</td>
 						<td class="View-value1"
-							style="font-size: 16px; padding-left: 0px;"><span>${sale.saleNo}</span></td>
+							style="font-size: 16px; padding-left: 0px;"><span id="saleNo">${sale.saleNo}</span></td>
+						<%--<td class="View-value1"--%>
+							<%--style="font-size: 16px;"><button>导出Excel</button></td>--%>
 					</tr>
 					<tr>
 						<td class="View-Title1">地 址：</td>

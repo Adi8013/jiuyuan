@@ -34,6 +34,13 @@ public class UserController {
 		String reJSON = JSON.toJSONString(user);
 		return reJSON;
 	}
+
+	@PostMapping("/search")
+	public String findUserByUsername(String username) {
+		List<User> userList = userService.findUserByUNlike(username);
+		String reJSON = JSON.toJSONString(userList);
+		return reJSON;
+	}
 	
 	@PostMapping("/modifyone")
 	public String updateUser(User user) {
@@ -59,7 +66,7 @@ public class UserController {
 			return SystemConstant.ERROR;
 		}
 	}
-	
+
 	@RequestMapping(value="/addone", method = RequestMethod.POST)
 	public ResponseMsg addUser(@Valid User user, BindingResult re) {
 		ResponseMsg rm = new ResponseMsg();

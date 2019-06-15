@@ -89,7 +89,6 @@ public class LoginController {
 		}
 		User user = userService.loginUser(userAccount);
 		if (user == null) {
-			user.getUserAccount();
 			return ResponseMsg.failed("用户名不存在！");
 		} else {
 			// 解密

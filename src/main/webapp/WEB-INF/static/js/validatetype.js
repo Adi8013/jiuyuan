@@ -25,6 +25,16 @@ $(function() {
 							},
 							message : '该帐号已存在'
 						},
+						required: {
+							validator : function(value, param) {
+								if (isEmpty(value) || value == "") {
+									return false;
+								} else {
+									return true;
+								}
+							},
+							message : '必填项'
+						},
 						CHS : {
 							validator : function(value, param) {
 								return /^[\u0391-\uFFE5]+$/.test(value);
