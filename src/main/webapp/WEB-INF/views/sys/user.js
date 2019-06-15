@@ -138,7 +138,6 @@ function remove() {
     var flag = false;
     $(items).each(function () {
         if (this.userAccount == 'super') {
-            console.log('进来了')
             top.layer.alert('超级管理员super帐号无法删除', {
                 icon: 5,
                 closeBtn: 0
@@ -237,7 +236,14 @@ function openEdit() {
             closeBtn: 0
         });
         return;
+    } else if (item.userAccount == 'super') {
+        top.layer.alert('超级管理员super帐号无法修改！！', {
+            icon: 5,
+            closeBtn: 0
+        });
+        return
     }
+
     $('#userAccount').validatebox('remove');
     //alert(item.productid);return;
     // 禁用userAccount

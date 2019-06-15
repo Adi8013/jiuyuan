@@ -77,10 +77,10 @@ public class SaleController {
             paramMap.put("operator", "制单员： " + sale.getOperator());
             paramMap.put("CN", "大写人民币：" + NumToCHUtil.numToCN(new BigDecimal(sum)));
             paramMap.put("customer", "客户签收： ");
-            paramMap.put("factory", "厂址： 佛山市三水芦苞工业区");
-            paramMap.put("phone1", "服务热线： 400-850-6773");
-            paramMap.put("shenzhen", "深圳办： 深圳市龙华区民治街道骏景华庭B113-114号");
-            paramMap.put("phone2", "服务热线： 0755-81756662");
+            paramMap.put("factory", "佛山地址： 佛山市禅城区南庄村建材物流仓A区1座");
+            paramMap.put("phone1", "服务热线： 0757-82564939");
+            paramMap.put("shenzhen", "");
+            paramMap.put("phone2", "移动电话： 13302801169");
 
             excel.exportExcel(3, saleNo, headers, excelModels, out, paramMap);
 
